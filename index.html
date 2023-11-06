@@ -4,7 +4,7 @@
 <body>
     <!-- Header Bar -->
   <div class="topnav" >
-    <a href="#Course" >EMIA2020 Grp4</a>
+    <a href="website.html" >EMIA2020 Grp4</a>
     <a href="#IntrustorPortal" class="split">Intrustor Portal</a>
     <a href="#AskedQuestioin" class="right">Question Asked</a>
     <a href="#PreviousVideo" class="right">Previous Video</a>
@@ -22,13 +22,13 @@
 <!-- Questioinbox -->
 <button class="open-button" onclick="openForm()">Video TA</button>
 <div class="chat-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
+  <form class="form-container">
     <h1>Video TA</h1>
     <label for="Answer"><b>Answer</b></label>
     <textarea  name="Answer" ></textarea>
     <label for="Question"><b>Question</b></label>
     <textarea placeholder="Type question.." name="Question" required></textarea>
-    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn">Send</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>  
