@@ -5,7 +5,7 @@ body {
 }
 * {box-sizing: border-box;}
 
-/* Header */
+/* student Header */
 .topnav {
   overflow: hidden;
   margin: 0;
@@ -28,12 +28,51 @@ body {
 
 .topnav a.split {
   float: right;
-  background-color: #001b7d;
+  background-color: #084082;
   color: white;
 }
 .topnav a.right {
   float: right;
   background-color: #333;
+  color: white;
+}
+/* instrustor header */
+.topnav_instrustor {
+  overflow: hidden;
+  margin: 0;
+  background-color: #084082;
+}
+
+.topnav_instrustor a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav_instrustor a.left:hover {
+  background-color: #eeeeee;
+  color: black;
+}
+
+.topnav_instrustor a.focus {
+  background-color: #eeeeee;
+  color: black;
+}
+.topnav_instrustor a.focus:hover {
+  background-color: #dddddd;
+  color: black;
+}
+.topnav_instrustor a.split {
+  float: right;
+  background-color: #333;
+  color: white;
+}
+.topnav_instrustor a.left {
+  float: left;
+  background-color: #084082;
   color: white;
 }
 
