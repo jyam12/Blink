@@ -1,75 +1,5 @@
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
-
-// quiz
-var coll = document.getElementsByClassName("collapsible");
-var i;
-import questionHistory from "./history.json" assert { type: "json" };
-import {
-  sendPrompt,
-  PGAskQuestion,
-  PGQuizQuestion,
-  PGQuizAnswer,
-} from "./gpt.js";
-const quiz = [];
-
-// #region QuestionHistory utils
-
-/**
- * Parse question history into string format
- * @param {Entry[]} history a list of question history entries
- * @returns {String} the parsed question history in string format
- */
-function parseQuestionHistory(history) {
-  let parsedHistory = "[";
-  for (const entry of history) {
-    parsedHistory += `{ question: "${entry.question}", answer: "${entry.answer}" }, `;
-  }
-  parsedHistory += "]";
-  return parsedHistory;
-}
-
-/**
- * Add question history entry to question history
- * @param {String} question the question asked by the student
- * @param {String} answer the answer given by GPT
- */
-function addQuestionHistory(question, answer) {
-  const entry = {
-    id: Date.now(),
-    question,
-    answer,
-    verified: false,
-  };
-  questionHistory.history.push(entry);
-  console.log(questionHistory);
-}
-
-/**
- * Get verified question history
- * @returns {Entry[]} a list of verified question history entries
- */
-function getVerifiedQuestionHistory() {
-  const verifiedQuestionHistory = questionHistory.history.filter(
-    (entry) => entry.verified
-  );
-  return verifiedQuestionHistory;
-}
-
-/**
- * Verify a question history entry
- * @param {int} id the id of the question history entry
- */
-function verfiyQuestionHistory(id) {
-  const entry = questionHistory.history.find((entry) => entry.id === id);
-  entry.verified = true;
-}
-
-// #endregion
+import { sendPrompt, PGAskQuestion } from "./gpt.js";
+import { addQuestionHistory } from "./question_asked.js";
 
 // #region ChatbotUI Events
 
@@ -87,7 +17,7 @@ function openForm(e) {
  * Event handler for closeFormBtn
  */
 function closeForm(e) {
-  document.getElementById("myForm").style.display = "none";
+  document.getElementById("closeForm").style.display = "none";
 }
 
 if (typeof openFormBtn !== "undefined")
@@ -123,52 +53,3 @@ if (typeof sendBtn !== "undefined")
   sendBtn.addEventListener("click", askQuestion);
 
 // #endregion
-
-// #region Quiz utils
-
-/**
- * Get thevideo pause time
- * @returns {String} the video pause time in string format
- */
-function getVideoPauseTime() {
-  const video = document.getElementById("video");
-  const time = video.currentTime;
-
-  const m = Math.floor(time / 60);
-  const s = Math.floor(time - m * 60);
-
-  const timeString = `${m}:${s}`;
-  return timeString;
-}
-
-async function generateAndDisplayQuizQuestion() {
-  // #todo
-
-  const quizQuestion = await sendPrompt("", PGQuizQuestion);
-}
-
-async function generateAndDisplayQuizAnswer() {
-  // #todo
-
-  const quizAnswer = await sendPrompt("", PGQuizAnswer);
-}
-
-function displayQuizQuestion() {
-  // #todo
-}
-
-// #endregion
-
-export { parseQuestionHistory, getVerifiedQuestionHistory };
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}

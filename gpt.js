@@ -1,5 +1,9 @@
 import data from "./data.json" assert { type: "json" };
-import { parseQuestionHistory, getVerifiedQuestionHistory } from "./website.js";
+import {
+  parseQuestionHistory,
+  getVerifiedQuestionHistory,
+} from "./question_asked.js";
+
 const { transcript, apikey, openAIURL } = data;
 
 // #region PromptGenerators
