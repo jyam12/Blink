@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="header_student.css">
+<link rel="stylesheet" href="video.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+    <!-- Header Bar -->
+    <div class="topnav" >
+      <a href="index_student.html" >CORE-0000</a>
+      <a href="index.html" class="split">Intrustor Portal</a>
+      <!-- <a href="#AskedQuestioin" class="right">Question Asked</a> -->
+      <div class="dropdown">
+        <button class="dropbtn">Previous Video
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="CORE0000-L1_Video_student_side.html">CORE0000-L1</a>
+          <a href="CORE0000-L2_Video_student_side.html">CORE0000-L2</a>
+          <a href="CORE0000-L3_Video_student_side.html">CORE0000-L3</a>
+        </div>
+      </div> 
+      <a href="index_student.html" class="right">Home</a>
+    </div>
+
+<script src="website.js"></script> 
+<header>
+<h4 class="text">CORE0000-L1_Video</h4>
+</header>
+  <!-- Video -->
+  <div class="video-container">
+    <video controls>
+      <source src="usecase.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+<!-- Questioinbox -->
+<button class="open-button" onclick="openForm()">Video TA</button>
+<div class="chat-popup" id="myForm">
+  <form class="form-container">
+    <h1>Video TA</h1>
+    <label for="Answer"><b>Answer</b></label>
+    <textarea  name="Answer" ></textarea>
+    <label for="Question"><b>Question</b></label>
+    <textarea placeholder="Type question.." name="Question" required></textarea>
+    <button type="button" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>  
+
+
+
+</body>
+</html>

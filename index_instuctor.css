@@ -1,0 +1,80 @@
+.container1 {
+    display: flex;
+    position: relative;
+    float: left;
+    width: 50%;
+  }
+.container2 {
+    display: flex;
+    position: relative;
+    float: left;
+    width: 50%;
+  }
+
+.image {
+    display: flex;
+    width: 100%;
+    height: auto;
+  }
+  
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #084082;
+  }
+  
+.container1:hover .overlay {
+    opacity: 0.8;
+  }
+.container2:hover .overlay {
+    opacity: 0.8;
+  }
+  
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+.image-container {
+  display: flex;
+}
+
+.image-overlay-fade {
+  position: relative;
+  flex-grow: 1;
+}
+
+.image-overlay-fade::after {
+  content: "ds ankdnkas";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-overlay-fade:hover::after {
+  opacity: 0.5;
+}
+
+.image-overlay-fade img {
+  width: 100%;
+  height: auto;
+}
