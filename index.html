@@ -1,41 +1,68 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="website.css">
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="index_instuctor.css">
 
 <body>
     <!-- Header Bar -->
-  <div class="topnav" >
-    <a href="index.html" >EMIA2020 Grp4</a>
-    <a href="intrustor.html" class="split">Intrustor Portal</a>
-    <!-- <a href="#AskedQuestioin" class="right">Question Asked</a> -->
-    <a href="#PreviousVideo" class="right">Previous Video</a>
-    <a href="#Home" class="right">Home</a>
-</div>
+  <div class="topnav_instrustor" >
+    <a href="index_student.html" class="split">Student Portal</a>
+    <a href="index.html" class="left">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Student View 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="CORE0000-L1_Video_instructor_side.html">CORE0000-L1</a>
+        <a href="CORE0000-L2_Video_instructor_side.html">CORE0000-L2</a>
+        <a href="CORE0000-L3_Video_instructor_side.html">CORE0000-L3</a>
+      </div>
+    </div> 
+    <a href="question_asked.html" class="left">Question Asked</a>
+    <a href="quiz_function_from_ai.html" class="left">Quiz Function From AI</a>
+  </div>
 <script src="website.js"></script> 
 <header>
-<h4 class="text">CORE0000-L1_Video</h4>
+  <a href="CORE0000-L1_Video_instructor_side.html" >CORE0000-L1_Video</a>
 </header>
-  <!-- Video -->
-  <div class="video-container">
-    <video controls>
-      <source src="usecase.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+
+
+<div class="image-container">
+  <div class="image-overlay-fade">
+    <img src="Screenshot 2023-08-25 at 5.49.18 PM.png" alt="Image 1">
   </div>
+  <div class="image-overlay-fade">
+    <img src="Screenshot 2023-08-25 at 5.49.18 PM.png" alt="Image 2">
+  </div>
+</div>
 
-<!-- Questioinbox -->
-<button class="open-button" onclick="openForm()">Video TA</button>
-<div class="chat-popup" id="myForm">
-  <form class="form-container">
-    <h1>Video TA</h1>
-    <label for="Answer"><b>Answer</b></label>
-    <textarea  name="Answer" ></textarea>
-    <label for="Question"><b>Question</b></label>
-    <textarea placeholder="Type question.." name="Question" required></textarea>
-    <button type="button" class="btn">Send</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
-</div>  
 
+<!-- <div class="container1">
+  <img src="Screenshot 2023-08-25 at 5.49.18 PM.png" alt="Student_View" class="image">
+  <div class="overlay">
+    <div class="text">
+      Student View
+    </div>
+  </div>
+</div>
+
+<div class="container2">
+  <img src="Screenshot 2023-08-25 at 5.49.18 PM.png" alt="Question_asked" class="image">
+  <div class="overlay">
+    <div class="text">
+      Question_asked
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <img src="Screenshot 2023-08-25 at 5.49.18 PM.png" alt="Quiz" class="image">
+  <div class="overlay">
+    <div class="text">
+      Quiz
+    </div>
+  </div>
+</div> -->
 
 
 </body>

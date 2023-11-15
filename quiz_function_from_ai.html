@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="website.css">
+<link rel="stylesheet" href="quiz_function_from_ai.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="header.css">
 
 <body>
     <!-- Header Bar -->
   <div class="topnav_instrustor" >
-    <a href="index.html" class="split">Student Portal</a>
-    <a href="#Home" class="left">Home</a>
-    <a href="intrustor.html" class="left">Student View</a>
+    <a href="index_student.html" class="split">Student Portal</a>
+    <a href="index.html" class="left">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Student View 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="CORE0000-L1_Video_instructor_side.html">CORE0000-L1</a>
+        <a href="CORE0000-L2_Video_instructor_side.html">CORE0000-L2</a>
+        <a href="CORE0000-L3_Video_instructor_side.html">CORE0000-L3</a>
+      </div>
+    </div> 
     <a href="question_asked.html" class="left">Question Asked</a>
     <a href="quiz_function_from_ai.html" class="focus">Quiz Function From AI</a>
-</div>
+  </div>
 
 <!-- Button fro open the new quiz -->
-<button type="button" width=100% class="collapsible">CORE0000-L1_Video </button>
+<br>
+<br>
+<button type="button" class="collapsible">CORE0000-L1_Video </button>
 <div class="content">
-  <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+  <br><br>
+  <!-- Todo: new quiz button adding function-->
+  <button type="button" class="new_quiz" onclick="alert('Hello world!')">New Quiz</button> 
+  <br><br><br>
+
 </div>
+<button type="button" class="collapsible">CORE0000-L2_Video </button>
+<div class="content">
+  <br><br>
+  <!-- Todo: new quiz button adding function-->
+  <button type="button" class="new_quiz" onclick="alert('Hello world!')">New Quiz</button> 
+  <br><br><br>
+</div>
+
 
 
 <script src="website.js"></script> 
