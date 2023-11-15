@@ -1,3 +1,13 @@
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+// quiz
+var coll = document.getElementsByClassName("collapsible");
+var i;
 import questionHistory from "./history.json" assert { type: "json" };
 import {
   sendPrompt,
@@ -80,21 +90,6 @@ function closeForm(e) {
   document.getElementById("myForm").style.display = "none";
 }
 
-// quiz
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
 if (typeof openFormBtn !== "undefined")
   openFormBtn.addEventListener("click", openForm);
 if (typeof closeFormBtn !== "undefined")
@@ -165,3 +160,15 @@ function displayQuizQuestion() {
 // #endregion
 
 export { parseQuestionHistory, getVerifiedQuestionHistory };
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
