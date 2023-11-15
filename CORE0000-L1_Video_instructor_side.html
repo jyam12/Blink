@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="header_video_instuctor.css">
+<link rel="stylesheet" href="/css/header_video_instuctor.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="video.css">
+<link rel="stylesheet" href="/css/video.css">
+<script src="/js/video.js" type="module"></script> 
+
 
 <body>
     <!-- Header Bar -->
@@ -21,20 +23,19 @@
     <a href="question_asked.html" class="left">Question Asked</a>
     <a href="quiz_function_from_ai.html" class="left">Quiz Function From AI</a>
   </div>
-<script src="website.js"></script> 
 <header>
 <h4 class="text">CORE0000-L1_Video</h4>
 </header>
   <!-- Video -->
   <div class="video-container">
     <video>
-        <source src="usecase.mp4" type="video/mp4">
+        <source src="/src/usecase.mp4" type="video/mp4">
     </video>
   </div>
 
 <!-- Questioinbox -->
-<button class="open-button" onclick="openForm()">Video TA</button>
-<div class="chat-popup" id="myForm">
+<button class="open-button" id="open-chat-btn">Video TA</button>
+<div class="chat-popup" id="chat-popup">
   <form class="form-container">
     <h1>Video TA</h1>
     <label for="Answer"><b>Answer</b></label>
@@ -42,7 +43,7 @@
     <label for="Question"><b>Question</b></label>
     <textarea placeholder="Type question.." name="Question" required></textarea>
     <button type="button" class="btn">Send</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    <button type="button" class="btn cancel" id="close-chat-btn">Close</button>
   </form>
 </div>  
 

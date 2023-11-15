@@ -1,29 +1,27 @@
 import { sendPrompt, PGAskQuestion } from "./gpt.js";
 import { addQuestionHistory } from "./question_asked.js";
 
-// #region ChatbotUI Events
+// #region Chat Popup
 
-const openFormBtn = document.getElementById("openForm");
-const closeFormBtn = document.getElementById("closeForm");
+const openChatBtn = document.getElementById("open-chat-btn");
+const closeChatBtn = document.getElementById("close-chat-btn");
+const chatPopupElem = document.getElementById("chat-popup");
 
 /**
  * Event handler for openFormBtn
  */
-function openForm(e) {
-  document.getElementById("myForm").style.display = "block";
-}
+openChatBtn.addEventListener(
+  "click",
+  () => (chatPopupElem.style.display = "block")
+);
 
 /**
  * Event handler for closeFormBtn
  */
-function closeForm(e) {
-  document.getElementById("closeForm").style.display = "none";
-}
-
-if (typeof openFormBtn !== "undefined")
-  openFormBtn.addEventListener("click", openForm);
-if (typeof closeFormBtn !== "undefined")
-  closeFormBtn.addEventListener("click", closeForm);
+closeChatBtn.addEventListener(
+  "click",
+  () => (chatPopupElem.style.display = "none")
+);
 
 // #endregion
 
