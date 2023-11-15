@@ -1,6 +1,11 @@
-const quiz = [];
-
-// #region Quiz utils
+import {
+  getQuiz,
+  AddQuiz,
+  updateAnswerById,
+  updateQuestionById,
+} from "/js/lib/quiz";
+import { sendPrompt } from "/js/lib/gpt.js";
+import { PGQuizAnswer, PGQuizQuestion } from "/js/lib/prompt_generators";
 
 /**
  * Get thevideo pause time
@@ -19,14 +24,10 @@ function getVideoPauseTime() {
 
 async function generateAndDisplayQuizQuestion() {
   // #todo
-
-  const quizQuestion = await sendPrompt("", PGQuizQuestion);
 }
 
 async function generateAndDisplayQuizAnswer() {
   // #todo
-
-  const quizAnswer = await sendPrompt("", PGQuizAnswer);
 }
 
 function displayQuizQuestion() {

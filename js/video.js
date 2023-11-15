@@ -1,5 +1,6 @@
-import { sendPrompt, PGAskQuestion } from "./gpt.js";
-import { addQuestionHistory } from "./question_asked.js";
+import { sendPrompt } from "/js/lib/gpt.js";
+import { PGAskQuestion } from "/js/lib/prompt_generators.js";
+import { addQuestionHistory, getQuestionHistory } from "/js/lib/history.js";
 
 // #region Chat Popup
 
@@ -27,27 +28,24 @@ closeChatBtn.addEventListener(
 
 // #region AskQuestion Events
 
-const questionElem = document.getElementById("question");
-const answerElem = document.getElementById("answer");
-const sendBtn = document.getElementById("send");
+const questionElem = document.getElementById("question-textarea");
+const answerElem = document.getElementById("answer-textarea");
+const askBtn = document.getElementById("ask-btn");
+const history = getQuestionHistory();
 
 /**
- * Event handler for sendBtn, ask question, display answer and update history
- * @param {Event} event
+ * Event for ask-btn, ask question, display answer and update history
  */
-async function askQuestion(event) {
-  event.preventDefault();
 
+askBtn.addEventListener("click", async (event) => {
+  event.preventDefault();
   const question = questionElem.value;
 
   // or use PGAskQuestionWithoutQuestionHistory
   const answer = await sendPrompt(question, PGAskQuestion);
 
   answerElem.innerText = answer;
-  addQuestionHistory(question, answer);
-}
-
-if (typeof sendBtn !== "undefined")
-  sendBtn.addEventListener("click", askQuestion);
+  addQuestionHistory(history, question, answer);
+});
 
 // #endregion
