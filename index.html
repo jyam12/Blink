@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- axios -->
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script> <!-- js-cookie -->
 <link rel="stylesheet" href="website.css">
-<script src="website.js" type="module"></script> 
 
 <body>
     <!-- Header Bar -->
@@ -13,28 +10,29 @@
     <a href="#PreviousVideo" class="right">Previous Video</a>
     <a href="#Home" class="right">Home</a>
 </div>
+<script src="website.js"></script> 
 <header>
 <h4 class="text">CORE0000-L1_Video</h4>
 </header>
   <!-- Video -->
   <div class="video-container">
-    <video id="video" controls>
-      <source src="usecase.mp4" type="video/mp4"/>
+    <video controls>
+      <source src="usecase.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </div>
 
 <!-- Questioinbox -->
-<button class="open-button" id="openForm">Video TA</button>
+<button class="open-button" onclick="openForm()">Video TA</button>
 <div class="chat-popup" id="myForm">
   <form class="form-container">
     <h1>Video TA</h1>
     <label for="Answer"><b>Answer</b></label>
-    <textarea  name="Answer" id="answer" readonly></textarea>
+    <textarea  name="Answer" ></textarea>
     <label for="Question"><b>Question</b></label>
-    <textarea placeholder="Type question.." name="Question" id="question" required></textarea>
-    <button type="button" class="btn" id="send">Send</button>
-    <button type="button" class="btn cancel" id="closeForm">Close</button>
+    <textarea placeholder="Type question.." name="Question" required></textarea>
+    <button type="button" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>  
 
