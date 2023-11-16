@@ -36,6 +36,21 @@ closeReportBtn.addEventListener(
 
 // #region History Utils
 
+/**
+ * Add event listeners to collapsible elements
+ * @param {HTMLElement} trigger the HTML element that triggers the collapsible
+ * @param  {...HTMLElement} collapsibleContent the HTML elements to be collapsed
+ */
+function addCollapsibleEventListeners(trigger, ...collapsibleContent) {
+  trigger.addEventListener("click", () => {
+    collapsibleContent.forEach((content) => {
+      content.classList.toggle("active");
+      display = content.style.display;
+      content.style.display = display === "block" ? "none" : "block";
+    });
+  });
+}
+
 function generateQuestionContainer(entry) {
   const { id, question, answer, verified } = entry;
 
@@ -103,20 +118,12 @@ appendQuestionContainers(
   unverifiedHistoryContainer,
   generatQuestionContainers(getUnVerifiedQuestionHistory(history))
 );
+addCollapsibleEventListeners(unverifiedToggle, unverifiedHistoryContainer);
+
+appendQuestionContainers(
+  verifiedHistoryContainer,
+  generatQuestionContainers(getVerifiedQuestionHistory(history))
+);
+addCollapsibleEventListeners(verifiedToggle, verifiedHistoryContainer);
 
 // #endregion
-
-// var coll = document.getElementsByClassName("collapsible");
-// var i;
-
-// for (i = 0; i < coll.length; i++) {
-//   coll[i].addEventListener("click", function () {
-//     this.classList.toggle("active");
-//     var content = this.nextElementSibling;
-//     if (content.style.display === "block") {
-//       content.style.display = "none";
-//     } else {
-//       content.style.display = "block";
-//     }
-//   });
-// }
