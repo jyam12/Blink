@@ -72,12 +72,16 @@ function getUnVerifiedQuestionHistory(history) {
 }
 
 /**
- * Verify a question history entry
+ * Verify a question history entry and store question history in local storage
  * @param {HistoryEntry[]} history a list of question history entries
  * @param {int} id the id of the question history entry
+ * @returns {HistoryEntry} the verified question history entry
  */
 function verfiyQuestionHistoryById(history, id) {
-  history.find((entry) => entry.id === id).verified = true;
+  const entry = history.find((entry) => entry.id === id);
+  entry.verified = true;
+  storeQuestionHistory(history);
+  return entry;
 }
 
 /**

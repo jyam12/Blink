@@ -10,11 +10,22 @@ import {
 
 const history = getQuestionHistory();
 
-// #region Report
+const videoHistoryCountElem = document.getElementById("video-history-count");
+const unverifiedCountElem = document.getElementById("unverified-count");
+const verifiedCountElem = document.getElementById("verified-count");
+
+const verifiedToggle = document.getElementById("verified-toggle");
+const unverifiedToggle = document.getElementById("unverified-toggle");
+
+const verifiedHistoryContainer = document.getElementById("verified-history");
+const unverifiedHistoryContainer =
+  document.getElementById("unverified-history");
 
 const openReportBtn = document.getElementById("open-report-btn");
 const closeReportBtn = document.getElementById("close-report-btn");
 const reportPopupElem = document.getElementById("report-popup");
+
+// #region Report
 
 /**
  * Event handler for openFormBtn
@@ -51,6 +62,30 @@ function addCollapsibleEventListeners(trigger, ...collapsibleContent) {
   });
 }
 
+function deleteQuestionContainer(questionContainer) {
+  const id = questionContainer.id;
+  deleteQuestionHistoryById(history, id);
+  questionContainer.remove();
+}
+
+function updateQuestionContainer(questionContainer) {
+  const id = questionContainer.id;
+  const answer = questionContainer.querySelector("#history-answer").value;
+  updateHistoryAnswerById(history, id, answer);
+}
+
+function verifyQuestionContainer(questionContainer) {
+  const id = questionContainer.id;
+  const entry = verfiyQuestionHistoryById(history, id);
+  questionContainer.remove();
+  const newQuestionContainer = generateQuestionContainer(
+    entry,
+    history,
+    verifiedHistoryContainer
+  );
+  verifiedHistoryContainer.appendChild(newQuestionContainer);
+}
+
 function generateQuestionContainer(entry) {
   const { id, question, answer, verified } = entry;
 
@@ -69,10 +104,23 @@ function generateQuestionContainer(entry) {
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-history-question";
   deleteBtn.innerText = "Delete";
+  deleteBtn.addEventListener("click", (e) =>
+    deleteQuestionContainer(questionContainer)
+  );
+
+  const saveBtn = document.createElement("button");
+  saveBtn.className = "save-history-question";
+  saveBtn.innerText = "Save";
+  saveBtn.addEventListener("click", (e) =>
+    updateQuestionContainer(questionContainer)
+  );
 
   const verifyBtn = document.createElement("button");
   verifyBtn.className = "verify-history-question";
   verifyBtn.innerText = "Verify";
+  verifyBtn.addEventListener("click", (e) =>
+    verifyQuestionContainer(questionContainer)
+  );
 
   questionContainer.appendChild(questionElem);
   questionContainer.appendChild(answerElem);
@@ -82,7 +130,7 @@ function generateQuestionContainer(entry) {
   return questionContainer;
 }
 
-function generatQuestionContainers(history) {
+function generatQuestionContainers() {
   const questionContainers = [];
 
   for (const entry of history) {
@@ -101,29 +149,17 @@ function appendQuestionContainers(historyContainer, questionContainers) {
 
 // #endregion
 
-// #region History
-
-const videoHistoryCountElem = document.getElementById("video-history-count");
-const unverifiedCountElem = document.getElementById("unverified-count");
-const verifiedCountElem = document.getElementById("verified-count");
-
-const unverifiedToggle = document.getElementById("unverified-toggle");
-const verifiedToggle = document.getElementById("verified-toggle");
-
-const unverifiedHistoryContainer =
-  document.getElementById("unverified-history");
-const verifiedHistoryContainer = document.getElementById("verified-history");
+// #region main
+appendQuestionContainers(
+  verifiedHistoryContainer,
+  generatQuestionContainers(getVerifiedQuestionHistory(history))
+);
+addCollapsibleEventListeners(verifiedToggle, verifiedHistoryContainer);
 
 appendQuestionContainers(
   unverifiedHistoryContainer,
   generatQuestionContainers(getUnVerifiedQuestionHistory(history))
 );
 addCollapsibleEventListeners(unverifiedToggle, unverifiedHistoryContainer);
-
-appendQuestionContainers(
-  verifiedHistoryContainer,
-  generatQuestionContainers(getVerifiedQuestionHistory(history))
-);
-addCollapsibleEventListeners(verifiedToggle, verifiedHistoryContainer);
 
 // #endregion
