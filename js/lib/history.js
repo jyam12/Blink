@@ -73,7 +73,7 @@ class HistoryDatabase {
    * Store question history in local storage
    */
   storeHistory() {
-    localStorage.setItem("questionHistory", JSON.stringify(history));
+    localStorage.setItem("questionHistory", JSON.stringify(this.history));
   }
 
   /**
