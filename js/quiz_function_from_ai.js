@@ -1,11 +1,5 @@
-import {
-  getQuiz,
-  addQuiz,
-  updateQuizQuestionById,
-  updateQuizAnswerById,
-} from "/js/lib/quiz.js";
-import { sendPrompt } from "/js/lib/gpt.js";
-import { PGQuizAnswer, PGQuizQuestion } from "/js/lib/prompt_generators.js";
+import { QuizDatabase } from "/js/lib/quiz.js";
+import { GPTManger, PromptGenerator } from "/js/lib/gpt.js";
 
 /**
  * Get thevideo pause time

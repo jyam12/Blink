@@ -1,26 +1,5 @@
 import gptInfo from "/src/gpt.json" assert { type: "json" };
 
-// /**
-//  * Generate prompt for GPT given context and content.
-//  * @param {String} context the context for GPT
-//  * @param {String} content the content for GPT
-//  * @returns {PromptObject} the prompt for GPT
-//  */
-// function generatePrompt(context, content) {
-//   const prompt = {
-//     model: "gpt-35-turbo",
-//     messages: [
-//       {
-//         role: "system",
-//         content: context,
-//       },
-//       { role: "user", content: content },
-//     ],
-//   };
-
-//   return prompt;
-// }
-
 class Prompt {
   constructor(context, content) {
     this.model = "gpt-35-turbo";
@@ -126,10 +105,7 @@ class PromptGenerator {
 }
 
 class GPTManger {
-  constructor() {
-    this.openAIURL = gptInfo.openAIURL;
-    this.apikey = gptInfo.apikey;
-  }
+  constructor() {}
 
   setup(generatePrompt) {
     this.generatePrompt = generatePrompt;
