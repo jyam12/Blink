@@ -1,129 +1,272 @@
-import {
-  getQuestionHistory,
-  addQuestionHistory,
-  getVerifiedQuestionHistory,
-  getUnVerifiedQuestionHistory,
-  verfiyQuestionHistoryById,
-  deleteQuestionHistoryById,
-  updateHistoryAnswerById,
-} from "./lib/history.js";
+import { HistoryDatabase } from "./lib/history.js";
+import { GPTManger, PromptGenerator } from "./lib/gpt.js";
 
-const history = getQuestionHistory();
+// #region Utils
 
-// #region Report
+class ReportManager {
+  constructor(
+    openReportBtn,
+    closeReportBtn,
+    reportPopupElem,
+    reportContentElem
+  ) {
+    this.openReportBtn = openReportBtn;
+    this.closeReportBtn = closeReportBtn;
+    this.reportPopupElem = reportPopupElem;
+    this.reportContentElem = reportContentElem;
+  }
 
-const openReportBtn = document.getElementById("open-report-btn");
-const closeReportBtn = document.getElementById("close-report-btn");
-const reportPopupElem = document.getElementById("report-popup");
+  setup(gptManger) {
+    this.gptManger = gptManger;
+    this.setupOpen();
+    this.setupClose();
+  }
 
-/**
- * Event handler for openFormBtn
- */
-openReportBtn.addEventListener(
-  "click",
-  () => (reportPopupElem.style.display = "block")
-);
+  /**
+   * Event handler for openFormBtn
+   */
+  setupOpen() {
+    this.openReportBtn.addEventListener("click", async () => {
+      this.reportPopupElem.style.display = "block";
+      await this.generateReport();
+    });
+  }
 
-/**
- * Event handler for closeFormBtn
- */
-closeReportBtn.addEventListener(
-  "click",
-  () => (reportPopupElem.style.display = "none")
-);
+  /**
+   * Event handler for closeFormBtn
+   */
+  setupClose() {
+    this.closeReportBtn.addEventListener(
+      "click",
+      () => (this.reportPopupElem.style.display = "none")
+    );
+  }
 
-// #endregion
-
-// #region History Utils
+  /**
+   * Generate report content and display it
+   */
+  async generateReport() {
+    this.reportContentElem.innerText = "Please wait...";
+    const report = await this.gptManger.send(null);
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    // const report = "this is a report";
+    this.reportContentElem.innerText = report;
+  }
+}
 
 /**
  * Add event listeners to collapsible elements
  * @param {HTMLElement} trigger the HTML element that triggers the collapsible
- * @param  {...HTMLElement} collapsibleContent the HTML elements to be collapsed
+ * @param  {...HTMLElement} contents the HTML elements to be collapsed
  */
-function addCollapsibleEventListeners(trigger, ...collapsibleContent) {
+function addCollapsibleEventListeners(trigger, ...contents) {
   trigger.addEventListener("click", () => {
-    collapsibleContent.forEach((content) => {
+    contents.forEach((content) => {
       content.classList.toggle("active");
-      display = content.style.display;
+      let display = content.style.display;
       content.style.display = display === "block" ? "none" : "block";
     });
   });
 }
 
-function generateQuestionContainer(entry) {
-  const { id, question, answer, verified } = entry;
-
-  const questionContainer = document.createElement("div");
-  questionContainer.className = "question-container";
-  questionContainer.id = `${id}`;
-
-  const questionElem = document.createElement("button");
-  questionElem.className = "history-question collapsible";
-  questionElem.innerText = question;
-
-  const answerElem = document.createElement("textarea");
-  answerElem.className = "history-answer";
-  answerElem.value = answer;
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.className = "delete-history-question";
-  deleteBtn.innerText = "Delete";
-
-  const verifyBtn = document.createElement("button");
-  verifyBtn.className = "verify-history-question";
-  verifyBtn.innerText = "Verify";
-
-  questionContainer.appendChild(questionElem);
-  questionContainer.appendChild(answerElem);
-  questionContainer.appendChild(deleteBtn);
-  if (!verified) questionContainer.appendChild(verifyBtn);
-
-  return questionContainer;
+class ContainerElements {
+  constructor(toggle, countElem, historyContainer) {
+    this.toggle = toggle;
+    this.countElem = countElem;
+    this.historyContainer = historyContainer;
+  }
 }
 
-function generatQuestionContainers(history) {
-  const questionContainers = [];
+class HistoryManager {
+  constructor(videoHistoryCountElem, unverifiedElements, verifiedElements) {
+    this.videoHistoryCountElem = videoHistoryCountElem;
 
-  for (const entry of history) {
-    const questionContainer = generateQuestionContainer(entry);
-    questionContainers.push(questionContainer);
+    this.unverifiedToggle = unverifiedElements.toggle;
+    this.unverifiedCountElem = unverifiedElements.countElem;
+    this.unverifiedHistoryContainer = unverifiedElements.historyContainer;
+
+    this.verifiedToggle = verifiedElements.toggle;
+    this.verifiedCountElem = verifiedElements.countElem;
+    this.verifiedHistoryContainer = verifiedElements.historyContainer;
   }
 
-  return questionContainers;
-}
-
-function appendQuestionContainers(historyContainer, questionContainers) {
-  for (const questionContainer of questionContainers) {
-    historyContainer.appendChild(questionContainer);
+  // #region Setup
+  setup(historyDatabase) {
+    this.historyDatabase = historyDatabase;
+    this.setupVerified();
+    this.setupUnverified();
+    this.setAllCountElems();
   }
+
+  setupVerified() {
+    const verifiedQuestionContainers = this.generateQuestionContainers(
+      this.historyDatabase.verified
+    );
+    this.appendQuestionContainers(
+      this.verifiedHistoryContainer,
+      verifiedQuestionContainers
+    );
+    addCollapsibleEventListeners(
+      this.verifiedToggle,
+      this.verifiedHistoryContainer
+    );
+  }
+
+  setupUnverified() {
+    const unverifiedQuestionContainers = this.generateQuestionContainers(
+      this.historyDatabase.unverified
+    );
+    this.appendQuestionContainers(
+      this.unverifiedHistoryContainer,
+      unverifiedQuestionContainers
+    );
+    addCollapsibleEventListeners(
+      this.unverifiedToggle,
+      this.unverifiedHistoryContainer
+    );
+  }
+
+  generateQuestionContainer(entry) {
+    const { id, question, answer, verified } = entry;
+
+    const questionContainer = document.createElement("div");
+    questionContainer.className = "question-container";
+    questionContainer.id = `${id}`;
+
+    const questionElem = document.createElement("button");
+    questionElem.className = "history-question collapsible";
+    questionElem.innerText = question;
+
+    const answerElem = document.createElement("textarea");
+    answerElem.className = "history-answer";
+    answerElem.value = answer;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-history-question";
+    deleteBtn.innerText = "Delete";
+    deleteBtn.addEventListener("click", (e) => this.delete(questionContainer));
+
+    const saveBtn = document.createElement("button");
+    saveBtn.className = "save-history-question";
+    saveBtn.innerText = "Save";
+    saveBtn.addEventListener("click", (e) => this.update(questionContainer));
+
+    const verifyBtn = document.createElement("button");
+    verifyBtn.className = "verify-history-question";
+    verifyBtn.innerText = "Verify";
+    verifyBtn.addEventListener("click", (e) => this.verify(questionContainer));
+
+    questionContainer.appendChild(questionElem);
+    questionContainer.appendChild(answerElem);
+    questionContainer.appendChild(saveBtn);
+    questionContainer.appendChild(deleteBtn);
+    if (!verified) questionContainer.appendChild(verifyBtn);
+
+    return questionContainer;
+  }
+
+  generateQuestionContainers(history) {
+    const questionContainers = [];
+
+    for (const entry of history) {
+      const questionContainer = this.generateQuestionContainer(entry);
+      questionContainers.push(questionContainer);
+    }
+
+    return questionContainers;
+  }
+
+  appendQuestionContainers(historyContainer, questionContainers) {
+    for (const questionContainer of questionContainers) {
+      historyContainer.appendChild(questionContainer);
+    }
+  }
+
+  setCountElem(countElem, count) {
+    countElem.innerText = count;
+  }
+
+  setAllCountElems() {
+    this.setCountElem(
+      this.videoHistoryCountElem,
+      this.historyDatabase.history.length
+    );
+    this.setCountElem(
+      this.unverifiedCountElem,
+      this.historyDatabase.unverified.length
+    );
+    this.setCountElem(
+      this.verifiedCountElem,
+      this.historyDatabase.verified.length
+    );
+  }
+
+  // #endregion
+
+  // #region Operations
+
+  delete(questionContainer) {
+    const id = questionContainer.id;
+    this.historyDatabase.deleteById(id);
+    questionContainer.remove();
+    this.setAllCountElems();
+  }
+
+  update(questionContainer) {
+    const id = questionContainer.id;
+    const answer = questionContainer.querySelector(".history-answer").value;
+    this.historyDatabase.updateAnswerById(id, answer);
+    this.setAllCountElems();
+  }
+
+  verify(questionContainer) {
+    const id = questionContainer.id;
+    const entry = this.historyDatabase.verifyById(id);
+    questionContainer.remove();
+    const newQuestionContainer = this.generateQuestionContainer(entry);
+    this.verifiedHistoryContainer.appendChild(newQuestionContainer);
+    this.setAllCountElems();
+  }
+
+  // #endregion
 }
 
 // #endregion
 
-// #region History
+// #region main
 
-const videoHistoryCountElem = document.getElementById("video-history-count");
-const unverifiedCountElem = document.getElementById("unverified-count");
-const verifiedCountElem = document.getElementById("verified-count");
+localStorage.clear();
 
-const unverifiedToggle = document.getElementById("unverified-toggle");
-const verifiedToggle = document.getElementById("verified-toggle");
-
-const unverifiedHistoryContainer =
-  document.getElementById("unverified-history");
-const verifiedHistoryContainer = document.getElementById("verified-history");
-
-appendQuestionContainers(
-  unverifiedHistoryContainer,
-  generatQuestionContainers(getUnVerifiedQuestionHistory(history))
+const verifiedElements = new ContainerElements(
+  document.getElementById("verified-toggle"),
+  document.getElementById("verified-count"),
+  document.getElementById("verified-history")
 );
-addCollapsibleEventListeners(unverifiedToggle, unverifiedHistoryContainer);
-
-appendQuestionContainers(
-  verifiedHistoryContainer,
-  generatQuestionContainers(getVerifiedQuestionHistory(history))
+const unverifiedElements = new ContainerElements(
+  document.getElementById("unverified-toggle"),
+  document.getElementById("unverified-count"),
+  document.getElementById("unverified-history")
 );
-addCollapsibleEventListeners(verifiedToggle, verifiedHistoryContainer);
+
+const historyDatabase = new HistoryDatabase();
+const historyManager = new HistoryManager(
+  document.getElementById("video-history-count"),
+  unverifiedElements,
+  verifiedElements
+);
+const reportManager = new ReportManager(
+  document.getElementById("open-report-btn"),
+  document.getElementById("close-report-btn"),
+  document.getElementById("report-popup"),
+  document.getElementById("report-content")
+);
+const promptGenerator = new PromptGenerator();
+const gptManger = new GPTManger();
+
+historyManager.setup(historyDatabase);
+
+promptGenerator.setup(historyDatabase);
+gptManger.setup(promptGenerator.report.bind(promptGenerator));
+reportManager.setup(gptManger);
 
 // #endregion

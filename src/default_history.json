@@ -1,14 +1,20 @@
 [
   {
     "id": 1,
-    "verified": "true",
+    "verified": true,
     "question": "What is system requirement?",
     "answer": "Thank you for your question! A system requirement is a functional or non-functional need for a software system that the system must meet to satisfy its users, stakeholders, or regulatory bodies. Functional requirements specify the features, capabilities, or actions that the system must perform, while non-functional requirements specify the qualities or constraints that the system must have or satisfy, such as performance, reliability, usability, security, compatibility, or maintainability. System requirements are important because they help define the scope, goals, and success criteria of a software project, and they provide a basis for testing, validating, and verifying the system against its expected behavior and performance. Does that answer your question?"
   },
   {
     "id": 2,
-    "verified": "false",
+    "verified": false,
     "question": "could you give more example on alternative flow?",
     "answer": "Sure, I would be happy to provide more examples of alternative flows. Alternative flows are used to specify optional, variant, or exceptional behavior within a use case. For example, in the ATM system, an alternative flow for the Withdraw Money use case could be if the user tries to withdraw more money than the account balance, the system could display a message saying \"Insufficient funds\" and ask the user to retry with a smaller amount. Another example could be in a hotel booking system, an alternative flow for the Book Room use case could be if the requested room type is not available, the system could display a message saying \"Sorry, the room type is not available. Would you like to choose a different room type or cancel the booking?\". Does that help clarify what alternative flows are and provide some examples?"
+  },
+  {
+    "id": 3,
+    "verified": false,
+    "question": "hello",
+    "answer": "hello, what is your question?"
   }
 ]
