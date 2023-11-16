@@ -32,7 +32,7 @@ class HistoryDatabase {
    * @param {HistoryEntry[]} history a list of question history entries
    * @returns {String} the parsed question history in string format
    */
-  getParsedHistory(history) {
+  parseToString(history) {
     let parsedHistory = "[";
     for (const entry of history) {
       parsedHistory += `{ question: "${entry.question}", \nanswer: "${entry.answer}" }, \n`;
@@ -54,7 +54,7 @@ class HistoryDatabase {
    * @returns a list of unverified question history entries
    */
   get unverified() {
-    return history.filter((entry) => !entry.verified);
+    return this.history.filter((entry) => !entry.verified);
   }
 
   /**
@@ -63,7 +63,7 @@ class HistoryDatabase {
    * @returns the question history entry with the given id
    */
   getById(id) {
-    return this.history.find((entry) => entry.id === id);
+    return this.history.find((entry) => entry.id == id);
   }
 
   // #endregion
@@ -95,8 +95,9 @@ class HistoryDatabase {
    * @param {int} id the id of the question history entry
    * @returns {HistoryEntry} the verified question history entry
    */
-  verfiyById(id) {
-    const entry = this.history.find((entry) => entry.id === id);
+  verifyById(id) {
+    const entry = this.getById(id);
+    console.log(entry);
     entry.verified = true;
     this.storeHistory();
     return entry;
@@ -108,13 +109,10 @@ class HistoryDatabase {
    * @returns {HistoryEntry} the deleted question history entry
    */
   deleteById(id) {
-    const index = this.history.findIndex((entry) => entry.id === id);
-    const entryToDelete = this.history[index];
-    const entry = new HistoryEntry(...entryToDelete);
-
-    this.history.splice(index, 1);
+    const delEntry = this.getById(id);
+    this.history = this.history.filter((entry) => entry !== delEntry);
     this.storeHistory(history);
-    return entry;
+    return delEntry;
   }
 
   /**
@@ -126,7 +124,7 @@ class HistoryDatabase {
   updateAnswerById(id, answer) {
     const entry = this.getById(id);
     entry.answer = answer;
-    storeQuestionHistory(history);
+    this.storeHistory();
     return entry;
   }
 
