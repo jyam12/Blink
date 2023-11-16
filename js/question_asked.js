@@ -130,7 +130,7 @@ function generateQuestionContainer(entry) {
   return questionContainer;
 }
 
-function generatQuestionContainers() {
+function generatQuestionContainers(history) {
   const questionContainers = [];
 
   for (const entry of history) {
@@ -156,6 +156,8 @@ appendQuestionContainers(
 );
 addCollapsibleEventListeners(verifiedToggle, verifiedHistoryContainer);
 
+console.log(history);
+console.log(getUnVerifiedQuestionHistory(history));
 appendQuestionContainers(
   unverifiedHistoryContainer,
   generatQuestionContainers(getUnVerifiedQuestionHistory(history))
