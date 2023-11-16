@@ -235,7 +235,7 @@ class HistoryManager {
 
 // #region main
 
-localStorage.clear();
+// localStorage.clear();
 
 const verifiedElements = new ContainerElements(
   document.getElementById("verified-toggle"),
