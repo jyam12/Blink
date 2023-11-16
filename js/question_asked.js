@@ -1,14 +1,6 @@
-import {
-  getQuestionHistory,
-  addQuestionHistory,
-  getVerifiedQuestionHistory,
-  getUnVerifiedQuestionHistory,
-  verfiyQuestionHistoryById,
-  deleteQuestionHistoryById,
-  updateHistoryAnswerById,
-} from "./lib/history.js";
+import { HistoryDatabase } from "./lib/history.js";
 
-const history = getQuestionHistory();
+const HistoryDatabase = new HistoryDatabase();
 
 const videoHistoryCountElem = document.getElementById("video-history-count");
 const unverifiedCountElem = document.getElementById("unverified-count");
