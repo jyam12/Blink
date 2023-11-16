@@ -2,7 +2,7 @@ import { getQuestionHistory } from "./lib/history.js";
 
 const history = getQuestionHistory();
 
-// #region Report Popup
+// #region Report
 
 const openReportBtn = document.getElementById("open-report-btn");
 const closeReportBtn = document.getElementById("close-report-btn");
@@ -23,6 +23,41 @@ closeReportBtn.addEventListener(
   "click",
   () => (reportPopupElem.style.display = "none")
 );
+
+// #endregion
+
+// #region History
+
+function generateQuestionContainer(entry) {
+  const { id, question, answer, verified } = entry;
+
+  const questionContainer = document.createElement("div");
+  questionContainer.className = "question-container";
+  questionContainer.id = `${id}`;
+
+  const questionElem = document.createElement("button");
+  questionElem.className = "history-question collapsible";
+  questionElem.innerText = question;
+
+  const answerElem = document.createElement("textarea");
+  answerElem.className = "history-answer";
+  answerElem.value = answer;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-history-question";
+  deleteBtn.innerText = "Delete";
+
+  const verifyBtn = document.createElement("button");
+  verifyBtn.className = "verify-history-question";
+  verifyBtn.innerText = "Verify";
+
+  questionContainer.appendChild(questionElem);
+  questionContainer.appendChild(answerElem);
+  questionContainer.appendChild(deleteBtn);
+  if (!verified) questionContainer.appendChild(verifyBtn);
+
+  return questionContainer;
+}
 
 // #endregion
 

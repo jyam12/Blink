@@ -63,6 +63,15 @@ function getVerifiedQuestionHistory(history) {
 }
 
 /**
+ * Get unverified question history
+ * @param {HistoryEntry} history a list of question history entries
+ * @returns {HistoryEntry[]} a list of unverified question history entries
+ */
+function getUnVerifiedQuestionHistory(history) {
+  return history.filter((entry) => !entry.verified);
+}
+
+/**
  * Verify a question history entry
  * @param {HistoryEntry[]} history a list of question history entries
  * @param {int} id the id of the question history entry
