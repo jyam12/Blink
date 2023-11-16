@@ -1,105 +1,84 @@
 import defaultQuiz from "/src/default_quiz.json" assert { type: "json" };
 
-class QuizEntry {
-  constructor(id, question, answer) {
-    this.id = id;
-    this.question = question;
-    this.answer = answer;
+/**
+ * Get quiz from local storage or set default quiz if not found
+ * @returns {QuizEntry[]} a list of quiz entries
+ */
+function getQuiz() {
+  if (localStorage.getItem("quiz") === null) {
+    localStorage.setItem("quiz", JSON.stringify(defaultQuiz));
   }
+  return JSON.parse(localStorage.getItem("quiz"));
 }
 
-class QuizDatabase {
-  constructor() {
-    this.quiz = this.getQuiz();
-  }
-
-  // #region Local Storage
-
-  /**
-   * Get quiz from local storage or set default quiz if not found
-   * @returns {QuizEntry[]} a list of quiz entries
-   */
-  getQuiz() {
-    if (localStorage.getItem("quiz") === null) {
-      localStorage.setItem("quiz", JSON.stringify(defaultQuiz));
-    }
-    return JSON.parse(localStorage.getItem("quiz"));
-  }
-
-  /**
-   * Store quiz in local storage
-   * @param {QuizEntry[]} quiz the quiz to be stored
-   */
-  storeQuiz() {
-    localStorage.setItem("quiz", JSON.stringify(this.quiz));
-  }
-
-  // #endregion
-
-  // #region Getters
-
-  getById(id) {
-    return this.quiz.find((entry) => entry.id === id);
-  }
-
-  // #region Operations
-
-  /**
-   * Add quiz entry to quiz and store quiz in local storage
-   * @param {String} question the quiz question
-   * @param {String} answer the quiz answer
-   * @returns {QuizEntry} the added quiz entry
-   */
-  addEntry(question, answer) {
-    const entry = new QuizEntry(Date.now(), question, answer);
-
-    this.quiz.push(entry);
-    this.storeQuiz();
-    return entry;
-  }
-
-  /**
-   * Delete quiz entry by id and store quiz in local storage
-   * @param {QuizEntry[]} quiz a list of quiz entries
-   * @param {int} id the id of the quiz entry to be deleted
-   * @returns {QuizEntry} the deleted quiz entry
-   */
-  deleteById(id) {
-    const delEntry = this.getById(id);
-    this.quiz = this.quiz.filter((entry) => entry !== delEntry);
-    storeQuiz();
-    return delEntry;
-  }
-
-  /**
-   * Update quiz question by id and store quiz in local storage
-   * @param {int} id the id of the quiz entry to be updated
-   * @param {String} question the new question
-   * @returns {QuizEntry} the updated quiz entry
-   */
-  updateQuestionById(id, question) {
-    const entry = this.getById(id);
-    entry.question = question;
-    storeQuiz();
-
-    return entry;
-  }
-
-  /**
-   * Update quiz answer by id and store quiz in local storage
-   * @param {int} id the id of the quiz entry to be updated
-   * @param {String} answer the new answer
-   * @returns {QuizEntry} the updated quiz entry
-   */
-  updateAnswerById(id, answer) {
-    const entry = this.getById(id);
-
-    entry.answer = answer;
-    storeQuiz();
-    return entry;
-  }
-
-  // #endregion
+/**
+ * Store quiz in local storage
+ * @param {QuizEntry[]} quiz the quiz to be stored
+ */
+function storeQuiz(quiz) {
+  localStorage.setItem("quiz", JSON.stringify(quiz));
 }
 
-export { QuizDatabase, QuizEntry };
+/**
+ * Add quiz entry to quiz and store quiz in local storage
+ * @param {QuizEntry[]} quiz a list of quiz entries
+ * @param {String} question the quiz question
+ * @param {String} answer the quiz answer
+ * @returns {QuizEntry} the added quiz entry
+ */
+function addQuiz(quiz, question, answer) {
+  const entry = {
+    id: Date.now(),
+    question,
+    answer,
+  };
+  quiz.push(entry);
+  storeQuiz(quiz);
+  return entry;
+}
+
+/**
+ * Delete quiz entry by id and store quiz in local storage
+ * @param {QuizEntry[]} quiz a list of quiz entries
+ * @param {int} id the id of the quiz entry to be deleted
+ */
+function deleteQuizById(quiz, id) {
+  const index = quiz.findIndex((entry) => entry.id === id);
+
+  quiz.splice(index, 1);
+  storeQuiz(quiz);
+}
+
+/**
+ * Update quiz question by id and store quiz in local storage
+ * @param {QuizEntry[]} quiz a list of quiz entries
+ * @param {int} id the id of the quiz entry to be updated
+ * @param {String} question the new question
+ */
+function updateQuizQuestionById(quiz, id, question) {
+  const index = quiz.findIndex((entry) => entry.id === id);
+
+  quiz[index].question = question;
+  storeQuiz(quiz);
+}
+
+/**
+ * Update quiz answer by id and store quiz in local storage
+ * @param {QuizEntry[]} quiz a list of quiz entries
+ * @param {int} id the id of the quiz entry to be updated
+ * @param {String} answer the new answer
+ */
+function updateQuizAnswerById(quiz, id, answer) {
+  const index = quiz.findIndex((entry) => entry.id === id);
+
+  quiz[index].answer = answer;
+  storeQuiz(quiz);
+}
+
+export {
+  getQuiz,
+  addQuiz,
+  deleteQuizById,
+  updateQuizQuestionById,
+  updateQuizAnswerById,
+};

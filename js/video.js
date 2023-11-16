@@ -1,5 +1,6 @@
-import { GPTManger, PromptGenerator } from "/js/lib/gpt.js";
-import { HistoryDatabase } from "/js/lib/history.js";
+import { sendPrompt } from "/js/lib/gpt.js";
+import { PGAskQuestion } from "/js/lib/prompt_generators.js";
+import { addQuestionHistory, getQuestionHistory } from "/js/lib/history.js";
 
 // #region Chat Popup
 
@@ -30,22 +31,21 @@ closeChatBtn.addEventListener(
 const questionElem = document.getElementById("question-textarea");
 const answerElem = document.getElementById("answer-textarea");
 const askBtn = document.getElementById("ask-btn");
+const history = getQuestionHistory();
 
-const historyDatabase = new HistoryDatabase();
-const promptGenerator = new PromptGenerator();
-const gptManger = new GPTManger();
-promptGenerator.setup(historyDatabase);
-gptManger.setup(promptGenerator.askQuestion.bind(promptGenerator));
+/**
+ * Event for ask-btn, ask question, display answer and update history
+ */
 
-// Event for ask-btn, ask question, display answer and update history
 askBtn.addEventListener("click", async (event) => {
   event.preventDefault();
   const question = questionElem.value;
 
-  const answer = await gptManger.send(question);
+  // or use PGAskQuestionWithoutQuestionHistory
+  const answer = await sendPrompt(question, PGAskQuestion);
 
   answerElem.innerText = answer;
-  historyDatabase.addEntry(question, answer);
+  addQuestionHistory(history, question, answer);
 });
 
 // #endregion
