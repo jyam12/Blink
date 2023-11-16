@@ -1,4 +1,12 @@
-import { getQuestionHistory } from "./lib/history.js";
+import {
+  getQuestionHistory,
+  addQuestionHistory,
+  getVerifiedQuestionHistory,
+  getUnVerifiedQuestionHistory,
+  verfiyQuestionHistoryById,
+  deleteQuestionHistoryById,
+  updateHistoryAnswerById,
+} from "./lib/history.js";
 
 const history = getQuestionHistory();
 
@@ -26,7 +34,7 @@ closeReportBtn.addEventListener(
 
 // #endregion
 
-// #region History
+// #region History Utils
 
 function generateQuestionContainer(entry) {
   const { id, question, answer, verified } = entry;
@@ -58,6 +66,43 @@ function generateQuestionContainer(entry) {
 
   return questionContainer;
 }
+
+function generatQuestionContainers(history) {
+  const questionContainers = [];
+
+  for (const entry of history) {
+    const questionContainer = generateQuestionContainer(entry);
+    questionContainers.push(questionContainer);
+  }
+
+  return questionContainers;
+}
+
+function appendQuestionContainers(historyContainer, questionContainers) {
+  for (const questionContainer of questionContainers) {
+    historyContainer.appendChild(questionContainer);
+  }
+}
+
+// #endregion
+
+// #region History
+
+const videoHistoryCountElem = document.getElementById("video-history-count");
+const unverifiedCountElem = document.getElementById("unverified-count");
+const verifiedCountElem = document.getElementById("verified-count");
+
+const unverifiedToggle = document.getElementById("unverified-toggle");
+const verifiedToggle = document.getElementById("verified-toggle");
+
+const unverifiedHistoryContainer =
+  document.getElementById("unverified-history");
+const verifiedHistoryContainer = document.getElementById("verified-history");
+
+appendQuestionContainers(
+  unverifiedHistoryContainer,
+  generatQuestionContainers(getUnVerifiedQuestionHistory(history))
+);
 
 // #endregion
 
