@@ -1,11 +1,5 @@
-import {
-  getQuiz,
-  AddQuiz,
-  updateAnswerById,
-  updateQuestionById,
-} from "/js/lib/quiz";
-import { sendPrompt } from "/js/lib/gpt.js";
-import { PGQuizAnswer, PGQuizQuestion } from "/js/lib/prompt_generators";
+import { QuizDatabase } from "/js/lib/quiz.js";
+import { GPTManger, PromptGenerator } from "/js/lib/gpt.js";
 
 /**
  * Get thevideo pause time
@@ -38,9 +32,8 @@ function displayQuizQuestion() {
 
 // quiz
 var coll = document.getElementsByClassName("collapsible");
-var i;
 
-for (i = 0; i < coll.length; i++) {
+for (let i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
