@@ -102,6 +102,20 @@ class HistoryManager {
     }
   }
 
+  /**
+   * Add collapsible event listeners to all question containers
+   */
+  static addCollapsibleEventListenersToAllQuestionContainers() {
+    const questionContainers = document.querySelectorAll(".question-container");
+    for (const questionContainer of questionContainers) {
+      const questionElem = questionContainer.querySelector(".history-question");
+      const otherElems = questionContainer.querySelectorAll(
+        ":not(.history-question)"
+      );
+      addCollapsibleEventListeners(questionElem, "block", ...otherElems);
+    }
+  }
+
   // #region Getters
 
   getQuestionContainerById(id) {
@@ -237,20 +251,6 @@ class HistoryManager {
       this.verifiedCountElem,
       this.historyDatabase.verified.length
     );
-  }
-
-  /**
-   * Add collapsible event listeners to all question containers
-   */
-  static addCollapsibleEventListenersToAllQuestionContainers() {
-    const questionContainers = document.querySelectorAll(".question-container");
-    for (const questionContainer of questionContainers) {
-      const questionElem = questionContainer.querySelector(".history-question");
-      const otherElems = questionContainer.querySelectorAll(
-        ":not(.history-question)"
-      );
-      addCollapsibleEventListeners(questionElem, "block", ...otherElems);
-    }
   }
 
   // #endregion
