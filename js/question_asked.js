@@ -59,13 +59,14 @@ class ReportManager {
  * @param {HTMLElement} trigger the HTML element that triggers the collapsible
  * @param  {...HTMLElement} contents the HTML elements to be collapsed
  */
-function addCollapsibleEventListeners(trigger, ...contents) {
+function addCollapsibleEventListeners(trigger, displayProperty, ...contents) {
   contents.forEach((content) => (content.style.display = "none"));
   trigger.addEventListener("click", () => {
     contents.forEach((content) => {
       content.classList.toggle("active");
       let display = content.style.display;
-      content.style.display = display === "block" ? "none" : "block";
+      content.style.display =
+        display === displayProperty ? "none" : displayProperty;
     });
   });
 }
@@ -97,7 +98,7 @@ class HistoryManager {
   static addCollapsibleEventListenersToVideoHistories() {
     const collapsibleBtns = document.querySelectorAll(".collapsible_for_Video");
     for (const btn of collapsibleBtns) {
-      addCollapsibleEventListeners(btn, btn.nextElementSibling);
+      addCollapsibleEventListeners(btn, "block", btn.nextElementSibling);
     }
   }
 
@@ -127,6 +128,7 @@ class HistoryManager {
     );
     addCollapsibleEventListeners(
       this.verifiedToggle,
+      "block",
       this.verifiedHistoryContainer
     );
   }
@@ -141,6 +143,7 @@ class HistoryManager {
     );
     addCollapsibleEventListeners(
       this.unverifiedToggle,
+      "block",
       this.unverifiedHistoryContainer
     );
   }
@@ -190,6 +193,7 @@ class HistoryManager {
 
     addCollapsibleEventListeners(
       questionElem,
+      "inline-block",
       answerElem,
       deleteBtn,
       saveBtn,
@@ -245,7 +249,7 @@ class HistoryManager {
       const otherElems = questionContainer.querySelectorAll(
         ":not(.history-question)"
       );
-      addCollapsibleEventListeners(questionElem, ...otherElems);
+      addCollapsibleEventListeners(questionElem, "block", ...otherElems);
     }
   }
 
