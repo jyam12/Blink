@@ -60,6 +60,7 @@ class ReportManager {
  * @param  {...HTMLElement} contents the HTML elements to be collapsed
  */
 function addCollapsibleEventListeners(trigger, ...contents) {
+  contents.forEach((content) => (content.style.display = "none"));
   trigger.addEventListener("click", () => {
     contents.forEach((content) => {
       content.classList.toggle("active");
@@ -89,6 +90,32 @@ class HistoryManager {
     this.verifiedCountElem = verifiedElements.countElem;
     this.verifiedHistoryContainer = verifiedElements.historyContainer;
   }
+
+  /**
+   * Add collapsible event listeners to all video history containers
+   */
+  static addCollapsibleEventListenersToVideoHistories() {
+    const videoHistoryContainers = document.querySelectorAll(
+      ".video-history-container"
+    );
+    console.log(videoHistoryContainers);
+    for (const videoHistoryContainer of videoHistoryContainers) {
+      const videoHistoryToggle = videoHistoryContainer.querySelector(
+        ".video-history-toggle"
+      );
+      const content = videoHistoryToggle.nextElementSibling;
+
+      addCollapsibleEventListeners(videoHistoryToggle, content);
+    }
+  }
+
+  // #region Getters
+
+  getQuestionContainerById(id) {
+    return document.getElementById(id);
+  }
+
+  // #endregion
 
   // #region Setup
   setup(historyDatabase) {
@@ -140,6 +167,14 @@ class HistoryManager {
     const answerElem = document.createElement("textarea");
     answerElem.className = "history-answer";
     answerElem.value = answer;
+    answerElem.addEventListener("focus", (e) => {
+      e.target.style.height = "1px";
+      e.target.style.height = 25 + e.target.scrollHeight + "px";
+    });
+    answerElem.addEventListener("focusout", (e) => {
+      e.target.style.height = "1px";
+      e.target.style.height = 25 + "px";
+    });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "delete-history-question";
@@ -161,6 +196,14 @@ class HistoryManager {
     questionContainer.appendChild(saveBtn);
     questionContainer.appendChild(deleteBtn);
     if (!verified) questionContainer.appendChild(verifyBtn);
+
+    addCollapsibleEventListeners(
+      questionElem,
+      answerElem,
+      deleteBtn,
+      saveBtn,
+      verifyBtn
+    );
 
     return questionContainer;
   }
@@ -199,6 +242,20 @@ class HistoryManager {
       this.verifiedCountElem,
       this.historyDatabase.verified.length
     );
+  }
+
+  /**
+   * Add collapsible event listeners to all question containers
+   */
+  static addCollapsibleEventListenersToAllQuestionContainers() {
+    const questionContainers = document.querySelectorAll(".question-container");
+    for (const questionContainer of questionContainers) {
+      const questionElem = questionContainer.querySelector(".history-question");
+      const otherElems = questionContainer.querySelectorAll(
+        ":not(.history-question)"
+      );
+      addCollapsibleEventListeners(questionElem, ...otherElems);
+    }
   }
 
   // #endregion
@@ -264,6 +321,7 @@ const promptGenerator = new PromptGenerator();
 const gptManger = new GPTManger();
 
 historyManager.setup(historyDatabase);
+HistoryManager.addCollapsibleEventListenersToVideoHistories();
 
 promptGenerator.setup(historyDatabase);
 gptManger.setup(promptGenerator.report.bind(promptGenerator));
