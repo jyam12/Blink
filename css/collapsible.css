@@ -34,6 +34,16 @@
     margin-left: 5px;
   }
 
+  .active:after {
+    content: "\2212";
+  }
+  
+  .active:hover:after {
+    content: "\2212";
+    color: white;
+  }
+
+
   .question-container {
     background-color: #f1f1f1;
     color: white;
@@ -41,36 +51,19 @@
     padding: 18px;
     width: 86%;
     border: none;
-    text-align: center;
+    text-align: left;
     outline: none;
     font-size: 15px;
-    margin: 0px 50px 0px;
+    margin: 0px 100px 0px;
   }
 
-  h1 {
-    display: inline;
-  }
-  h1:after {
-    content: " :";
-  }
-  
-  h1 span {
-    display: inline;
-
-  }
-  .video-history-count{
-    font-size: 34px;
-    font-weight: bold;
-    color: black;
-  }
-
-
+  /* history-question-button */
   .history-question{
     background-color: #084082;
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 86%;
+    width: 90%;
     border: none;
     text-align: left;
     outline: none;
@@ -98,8 +91,10 @@
     float: right;
     margin-left: 5px;
   }
+
+    /* history-question-answer*/
   .history-answer{
-    width: 100%;
+    width: 90%;
     max-height: 100%;
     padding: 12px 20px;
     box-sizing: border-box;
@@ -111,31 +106,45 @@
     resize: none;
     margin: 0px 10px 0px;
   }
+
+
+
   /* save delete Verify  */
   .save-history-question{
     border: none;
-    background-color: inherit;
+    background-color: #f1f1f1;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
     display: inline-block;
+    margin: 0px 10px 0px;
+  }
+  .save-history-question:hover{
+    background-color: #ccc;
   }
   .delete-history-question{
     border: none;
-    background-color: inherit;
+    background-color: #f1f1f1;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
     display: inline-block;
   }
+  .delete-history-question:hover{
+    background-color: #ccc;
+  }
   .verify-history-question{
     border: none;
-    background-color: inherit;
+    background-color: #f1f1f1;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
     display: inline-block;
+  }
+  .verify-history-question:hover{
+    background-color: #ccc;
   }
   .video-history{
     margin: 20px 0px 0px;
   }
+  

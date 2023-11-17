@@ -19,8 +19,11 @@
       </button>
       <div class="dropdown-content">
         <a href="CORE0000-L1_Video_instructor_side.html">COMP3111-L1</a>
-        <a href="CORE0000-L2_Video_instructor_side.html">COMP3111-L2</a>
-        <a href="CORE0000-L3_Video_instructor_side.html">COMP3111-L3</a>
+        <a href="">COMP3111-L2</a>
+        <a href="">COMP3111-L3</a>
+        <button class="dropbtnMoreVideo" >More Video
+          <i class="fa fa-caret-right"></i>
+        </button>
       </div>
     </div> 
     <a href="question_asked.html" class="focus">Question Asked</a>
@@ -32,15 +35,13 @@
   <br><br>
   <button type="button" class="collapsible_for_Video">COMP3111-L1_Video </button>
   <div class="content">
-    <br><br>
     <!-- Todo: new quiz button adding function-->
     <div>
       <div class="video-history-container">
-
         <!-- I need the span tag to show the question count-->
         <!-- I need id written down -->
-        <h1>Total Question Asked</h1>
-        <span class="video-history-count" id="video-history-count">0</span>
+        <h1>Total Question Asked &#58 
+        <span class="video-history-count" id="video-history-count">0</span></h1>
       </div> <!-- video title -->
         <div class="video-history" id="video-history">
           <div class="unverified-container" id="unverified-container">
@@ -91,8 +92,6 @@
 <br><br>
     <button type="button" class="collapsible_for_Video">COMP3111-L2_Video </button>
     <div class="content">
-      <br><br>  
-
     <div class="video-history-container">
       <div><h1>Total Question Asked &#58 <span class="video-history-count">0</span> </h1></div> <!-- video title -->
 
@@ -112,10 +111,8 @@
   <br><br>
   <button type="button" class="collapsible_for_Video">COMP3111-L3_Video </button>
   <div class="content">
-    <br><br>  
-
     <div class="video-history-container">
-      <div><h1>Total Question Asked</h1><span class="video-history-count">0</span></div> <!-- video title -->
+      <div><h1>Total Question Asked &#58 <span class="video-history-count">0</span></h1></div> <!-- video title -->
 
       <div class="video-history">
         <div class="unverified-container">
@@ -139,7 +136,7 @@
   <button class="open-button" id="open-report-btn">Report</button>
   <div class="chat-popup" id="report-popup">
     <form class="form-container">
-      <h1>Report</h1>
+      <h1 class="text">Report</h1>
       <p  name="report-content" id="report-content"></p>
       <button type="button" class="btn cancel" id="close-report-btn">Close</button>
     </form>

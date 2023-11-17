@@ -62,8 +62,8 @@ class ReportManager {
 function addCollapsibleEventListeners(trigger, displayProperty, ...contents) {
   contents.forEach((content) => (content.style.display = "none"));
   trigger.addEventListener("click", () => {
+    trigger.classList.toggle("active");
     contents.forEach((content) => {
-      content.classList.toggle("active");
       let display = content.style.display;
       content.style.display =
         display === displayProperty ? "none" : displayProperty;

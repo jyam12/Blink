@@ -87,5 +87,20 @@ body {
   .dropdown:hover .dropdown-content {
     display: block;
   }
+  .dropdown .dropbtnMoreVideo {
+    font-size: 17px;  
+    border: none;
+    outline: none;
+    color: black;
+    padding: 12px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    min-width: 160px;
+    text-align: left;
+  }
 
+  .dropbtnMoreVideo:hover {
+    background-color: #ddd;
+  }
 

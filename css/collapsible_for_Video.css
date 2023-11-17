@@ -42,12 +42,13 @@
   .active:after {
     content: "\2212";
   }
+  
   .active:hover:after {
     content: "\2212";
     color: white;
   }
   .content {
-    padding: 0 18px;
+    padding: 0px 20px 50px;
     /* max-height: 0; */
     overflow: hidden;
     transition: max-height 0.2s ease-out;
