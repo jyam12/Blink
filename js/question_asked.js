@@ -167,6 +167,14 @@ class HistoryManager {
     const answerElem = document.createElement("textarea");
     answerElem.className = "history-answer";
     answerElem.value = answer;
+    answerElem.addEventListener("focus", (e) => {
+      e.target.style.height = "1px";
+      e.target.style.height = 25 + e.target.scrollHeight + "px";
+    });
+    answerElem.addEventListener("focusout", (e) => {
+      e.target.style.height = "1px";
+      e.target.style.height = 25 + "px";
+    });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "delete-history-question";
