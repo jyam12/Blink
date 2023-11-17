@@ -95,17 +95,9 @@ class HistoryManager {
    * Add collapsible event listeners to all video history containers
    */
   static addCollapsibleEventListenersToVideoHistories() {
-    const videoHistoryContainers = document.querySelectorAll(
-      ".video-history-container"
-    );
-    console.log(videoHistoryContainers);
-    for (const videoHistoryContainer of videoHistoryContainers) {
-      const videoHistoryToggle = videoHistoryContainer.querySelector(
-        ".video-history-toggle"
-      );
-      const content = videoHistoryToggle.nextElementSibling;
-
-      addCollapsibleEventListeners(videoHistoryToggle, content);
+    const collapsibleBtns = document.querySelectorAll(".collapsible_for_Video");
+    for (const btn of collapsibleBtns) {
+      addCollapsibleEventListeners(btn, btn.nextElementSibling);
     }
   }
 
@@ -172,8 +164,7 @@ class HistoryManager {
       e.target.style.height = 25 + e.target.scrollHeight + "px";
     });
     answerElem.addEventListener("focusout", (e) => {
-      e.target.style.height = "1px";
-      e.target.style.height = 25 + "px";
+      e.target.style.height = 100 + "%";
     });
 
     const deleteBtn = document.createElement("button");
