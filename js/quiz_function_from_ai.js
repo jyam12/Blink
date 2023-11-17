@@ -1,6 +1,25 @@
 import { QuizDatabase } from "/js/lib/quiz.js";
 import { GPTManger, PromptGenerator } from "/js/lib/gpt.js";
 
+class QuizEntryComponent {
+  constructor(quizEntry, videoElem, questionGpt, answerGpt) {
+    this.quizEntry = quizEntry;
+    this.video = videoElem;
+    this.questionGpt = questionGpt;
+    this.answerGpt = answerGpt;
+
+    // this.elem = this.setup();
+  }
+
+  setup() {
+    setupOperationsComponent();
+    // setupQuestion();
+    // setupEntry();
+  }
+
+  setupOperationsComponent() {}
+}
+
 /**
  * Get thevideo pause time
  * @returns {String} the video pause time in string format

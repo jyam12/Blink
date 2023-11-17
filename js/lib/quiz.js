@@ -1,10 +1,11 @@
 import defaultQuiz from "/src/default_quiz.json" assert { type: "json" };
 
 class QuizEntry {
-  constructor(id, question, answer) {
+  constructor(id, question, answer, timeStamp) {
     this.id = id;
     this.question = question;
     this.answer = answer;
+    this.timeStamp = timeStamp;
   }
 }
 
@@ -41,6 +42,8 @@ class QuizDatabase {
   getById(id) {
     return this.quiz.find((entry) => entry.id === id);
   }
+
+  // #endregion
 
   // #region Operations
 
@@ -95,6 +98,14 @@ class QuizDatabase {
     const entry = this.getById(id);
 
     entry.answer = answer;
+    storeQuiz();
+    return entry;
+  }
+
+  updateTimeStampById(id, timeStamp) {
+    const entry = this.getById(id);
+
+    entry.timeStamp = timeStamp;
     storeQuiz();
     return entry;
   }
