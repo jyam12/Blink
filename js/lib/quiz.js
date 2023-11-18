@@ -54,7 +54,7 @@ class QuizDatabase {
    * @returns {QuizEntry} the added quiz entry
    */
   addEntry(question, answer) {
-    const entry = new QuizEntry(Date.now(), question, answer);
+    const entry = new QuizEntry(Date.now(), question, answer, "0:00");
 
     this.quiz.push(entry);
     this.storeQuiz();
@@ -70,7 +70,7 @@ class QuizDatabase {
   deleteById(id) {
     const delEntry = this.getById(id);
     this.quiz = this.quiz.filter((entry) => entry !== delEntry);
-    storeQuiz();
+    this.storeQuiz();
     return delEntry;
   }
 
@@ -83,7 +83,7 @@ class QuizDatabase {
   updateQuestionById(id, question) {
     const entry = this.getById(id);
     entry.question = question;
-    storeQuiz();
+    this.storeQuiz();
 
     return entry;
   }
@@ -98,7 +98,7 @@ class QuizDatabase {
     const entry = this.getById(id);
 
     entry.answer = answer;
-    storeQuiz();
+    this.storeQuiz();
     return entry;
   }
 
@@ -106,7 +106,7 @@ class QuizDatabase {
     const entry = this.getById(id);
 
     entry.timeStamp = timeStamp;
-    storeQuiz();
+    this.storeQuiz();
     return entry;
   }
 
