@@ -42,6 +42,7 @@ class QuizEntryComponent {
   constructBasicElems(id) {
     const queElem = document.createElement("textarea");
     queElem.classList.add("quiz-question");
+    // Johnny: collapsible->collapsibleforquestion
     queElem.classList.add("collapsibleforquestion");
     queElem.value = this.entry.question;
 
@@ -75,7 +76,7 @@ class QuizEntryComponent {
     const deleteBtnElem = document.createElement("button");
     deleteBtnElem.innerText = "Delete";
     deleteBtnElem.classList.add("delete-quiz");
-
+// Johnny: I Have reversed the order of button 
     return {
       queElem,
       ansElem,
@@ -125,6 +126,7 @@ class QuizEntryComponent {
   constructOperationElem(basicElements) {
     const operationElem = document.createElement("div");
     operationElem.classList.add("operations");
+    // Johnny: content->operationcontent
     operationElem.classList.add("operationcontent");
     for (const key in basicElements)
       if (key != "queElem") operationElem.appendChild(basicElements[key]);
