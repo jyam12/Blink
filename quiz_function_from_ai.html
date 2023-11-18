@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="/css/quiz_function_from_ai.css">
+<link rel="stylesheet" href="/css/collapsible_for_Video.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/header.css">
 
@@ -31,12 +32,12 @@
 <!-- Button fro open the new quiz -->
 <br>
 <br>
-<button type="button" class="collapsible">CORE0000-L1_Video </button>
+<button type="button" class="collapsible_for_Video">COMP3111-L1_Video </button>
 <div class="content">
   <br><br>
 
-  <!-- if no quiz -->
-  <button type="button" class="new_quiz">New Quiz</button> 
+  <!-- if no quiz
+  <button type="button" class="new_quiz">New Quiz</button>  -->
 
   <!-- if there is quiz -->
   <div class="quiz-container" id="quiz-container">
@@ -53,7 +54,7 @@
 
       <div class="quiz-entry" id="22">
         <textarea class="quiz-question collapsible">Question 1</textarea>
-        <div class="operations content">
+        <div class="operationcontent">
           <textarea class="quiz-answer">Answer 1</textarea>
           <label for="timestamp-22">Timestamp: </label>
           <input type="text" class="timestamp" name="timestamp-22" placeholder="0:0">
@@ -68,7 +69,7 @@
         <textarea class="quiz-question collapsible">Question 1</textarea>
         <div class="operations content">
           <textarea class="quiz-answer">Answer 1</textarea>
-          <label for="timestamp-33">Timestamp: </label>
+          <label for="timestamp-33" >Timestamp: </label>
           <input type="text" class="timestamp" name="timestamp-33" placeholder="0:0">
           <button type="button" class="delete-quiz">Delete</button>
           <button type="button" class="regenerate-qna">Regenerate Q&A</button>
@@ -81,7 +82,7 @@
         <textarea class="quiz-question collapsible">Question 1</textarea>
         <div class="operations content">
           <textarea class="quiz-answer">Answer 1</textarea>
-          <label for="timestamp-44">Timestamp: </label>
+          <label for="timestamp-44" >Timestamp: </label>
           <input type="text" class="timestamp" name="timestamp-44" placeholder="0:0">
           <button type="button" class="delete-quiz">Delete</button>
           <button type="button" class="regenerate-qna">Regenerate Q&A</button>
@@ -89,7 +90,6 @@
           <button type="button" class="save">Save</button>
         </div>
       </div>
-
     </div>
     
   </div>
@@ -98,11 +98,11 @@
 
   <br><br><br>
 </div>
-<button type="button" class="collapsible">CORE0000-L2_Video </button>
+<button type="button" class="collapsible_for_Video">CORE0000-L2_Video </button>
 <div class="content">
   <br><br>
   <!-- Todo: new quiz button adding function-->
-  <button type="button" class="new_quiz" onclick="alert('Hello world!')">New Quiz</button> 
+  <button type="button" class="new_quiz" onclick="alert('No video uploaded')">New Quiz</button> 
   <br><br><br>
 </div>
 

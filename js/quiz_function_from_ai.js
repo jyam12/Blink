@@ -42,7 +42,7 @@ class QuizEntryComponent {
   constructBasicElems(id) {
     const queElem = document.createElement("textarea");
     queElem.classList.add("quiz-question");
-    queElem.classList.add("collapsible");
+    queElem.classList.add("collapsibleforquestion");
     queElem.value = this.entry.question;
 
     const ansElem = document.createElement("textarea");
@@ -81,10 +81,10 @@ class QuizEntryComponent {
       ansElem,
       labelElem,
       timeStampElem,
-      regenerateQnABtnElem,
-      regenerateAnsBtnElem,
-      saveBtnElem,
       deleteBtnElem,
+      saveBtnElem,
+      regenerateAnsBtnElem,
+      regenerateQnABtnElem
     };
   }
 
@@ -125,7 +125,7 @@ class QuizEntryComponent {
   constructOperationElem(basicElements) {
     const operationElem = document.createElement("div");
     operationElem.classList.add("operations");
-    operationElem.classList.add("content");
+    operationElem.classList.add("operationcontent");
     for (const key in basicElements)
       if (key != "queElem") operationElem.appendChild(basicElements[key]);
 
