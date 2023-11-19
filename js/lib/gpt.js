@@ -63,7 +63,7 @@ class PromptGenerator {
     );
 
     const context = `You are an university instructor teaching a course on software engineering. You presented the following speech in the lecture: \n${this.transcript}. \n\nYou also have answered some students' questions: \n${history}`;
-    const content = `You want to test whether students understand what you have taught. You will come up with a quiz question based on what you have presented in the lecture and what student have asked. If many students asked questions on some concepts, then maybe many students don't understand these concept, and it may be better to have a quiz question related to these concepts. You only need to come up with a question, do not come up with answer. You can come up with any kind of question, such as multi choice question, blank fill question, short question, long question. \n\nWhat is the quiz question you will come up with?`;
+    const content = `You want to test whether students understand what you have taught. You will come up with a quiz question based on what you have presented in the lecture and what student have asked. If many students asked questions on some concepts, then maybe many students don't understand these concept, and it may be better to have a quiz question related to these concepts. You only need to come up with a question, do not come up with answer. You can only come up with multi choice question, blank fill question or short question. \n\nWhat is the quiz question you will come up with?`;
     const prompt = new Prompt(context, content);
     return prompt;
   }

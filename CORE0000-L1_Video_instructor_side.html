@@ -34,7 +34,7 @@
 </header>
   <!-- Video -->
   <div class="video-container">
-    <video controls>
+    <video id="video" controls>
         <source src="/src/usecase.mp4" type="video/mp4">
     </video>
   </div>
@@ -50,6 +50,17 @@
     <textarea placeholder="Type question.." name="Question" id="question-textarea" required></textarea>
     <button type="button" class="btn" id="ask-btn">Send</button>
     <button type="button" class="btn cancel" id="close-chat-btn">Close</button>
+  </form>
+</div>  
+
+<!-- Quizbox -->
+<button class="open-button" id="open-quiz-btn" style="display:none">Video TA</button>
+<div class="quiz-popup" id="quiz-popup">
+  <form class="form-container">
+    <textarea class="quiz-question" id="quiz-question" readonly></textarea>
+    <textarea  class="quiz-answer" id="quiz-answer" style="display:none" readonly></textarea>
+    <button type="button" class="btn" id="show-ans-btn">Answer</button>
+    <button type="button" class="btn cancel" id="close-quiz-btn">Close</button>
   </form>
 </div>  
 
