@@ -76,7 +76,7 @@ class QuizEntryComponent {
     const deleteBtnElem = document.createElement("button");
     deleteBtnElem.innerText = "Delete";
     deleteBtnElem.classList.add("delete-quiz");
-// Johnny: I Have reversed the order of button 
+    // Johnny: I Have reversed the order of button
     return {
       queElem,
       ansElem,
@@ -85,15 +85,15 @@ class QuizEntryComponent {
       deleteBtnElem,
       saveBtnElem,
       regenerateAnsBtnElem,
-      regenerateQnABtnElem
+      regenerateQnABtnElem,
     };
   }
 
   addEventListeners() {
-    this.basicElems.queElem.addEventListener("change", (e) => {
-      e.target.style.height = "1px";
+    this.basicElems.queElem.addEventListener("keyup", (e) => {
       e.target.style.height = e.target.scrollHeight + "px";
     });
+
     this.basicElems.queElem.addEventListener("click", (e) => {
       const contentStyle = this.operationElem.style;
       contentStyle.display = contentStyle.display === "none" ? "block" : "none";
@@ -182,6 +182,7 @@ class QuizEntryComponent {
 
     this.quizManager.updateEntry(this.entry);
     this.update(this.entry);
+    QuizManager.resizeAllQuestions();
   }
 
   async regenerateAns() {
@@ -240,6 +241,29 @@ class QuizManager {
 
     this.quizListElem.appendChild(newQuizBtnElem);
     return newQuizBtnElem;
+  }
+
+  static resizeAllQuestions() {
+    const queElem = document.getElementsByClassName("quiz-question");
+    Array.from(queElem).forEach((question) => {
+      question.style.height = question.scrollHeight + "px";
+    });
+  }
+
+  static addCollapsibleEventListenersToAllVideos() {
+    // add collapsible to video and quiz list
+    const collBtns = document.getElementsByClassName("collapsible_for_Video");
+    Array.from(collBtns).forEach((btn) => {
+      let contentStyle = btn.nextElementSibling.style;
+      contentStyle.display = "none";
+
+      btn.addEventListener("click", (e) => {
+        btn.classList.toggle("active");
+        contentStyle.display =
+          contentStyle.display === "none" ? "block" : "none";
+        QuizManager.resizeAllQuestions();
+      });
+    });
   }
 
   //#endregion
@@ -304,5 +328,6 @@ ansGpt.setup(pg.quizAnswer.bind(pg));
 const quizListElem = document.getElementById("quiz-list");
 const quizManager = new QuizManager(quizListElem);
 quizManager.setup(quizDatabase, queGpt, ansGpt);
+QuizManager.addCollapsibleEventListenersToAllVideos();
 
 // #endregion
