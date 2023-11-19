@@ -129,6 +129,7 @@ document.getElementById("close-quiz-btn").addEventListener("click", () => {
 document.getElementById("show-ans-btn").addEventListener("click", () => {
   let style = quizAnsElem.style;
   style.display = style.display === "none" ? "block" : "none";
+  style.width = "300px";
   style.height = "auto";
   style.height =
     quizAnsElem.scrollHeight > 300 ? "300px" : quizAnsElem.scrollHeight + "px";

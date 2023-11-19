@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/css/header_student.css">
 <link rel="stylesheet" href="/css/video.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/quiz.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/js/video.js" type="module"></script> 
@@ -34,12 +35,11 @@
 </header>
   <!-- Video -->
   <div class="video-container">
-    <video controls>
-      <source src="/src/usecase.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
+    <video id="video" controls>
+        <source src="/src/usecase.mp4" type="video/mp4">
     </video>
   </div>
-
+  
 <!-- Questioinbox -->
 <button class="open-button" id="open-chat-btn">Video TA</button>
 <div class="chat-popup" id="chat-popup">
@@ -54,7 +54,17 @@
   </form>
 </div> 
 
-
+<!-- Quizbox -->
+<button class="open-button-quiz" id="open-quiz-btn" >Quiz</button>
+<div class="quiz-popup" id="quiz-popup">
+  <form class="quiz-container">
+    <h1>Quiz</h1>
+    <textarea class="quiz-question" id="quiz-question" readonly></textarea>
+    <textarea  class="quiz-answer" id="quiz-answer" style="display:none" readonly></textarea>
+    <button type="button" class="btn" id="show-ans-btn">Answer</button>
+    <button type="button" class="btn cancel" id="close-quiz-btn">Close</button>
+  </form>
+</div>  
 
 </body>
 </html>
