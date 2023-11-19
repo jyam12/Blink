@@ -35,6 +35,12 @@ questionElem.addEventListener("input", () => {
   questionElem.style.height = questionElem.scrollHeight + "px";
 });
 
+questionElem.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && event.ctrlKey) {
+    askBtn.click();
+  }
+});
+
 document
   .getElementById("open-chat-btn")
   .addEventListener("click", () => (chatPopupElem.style.display = "block"));
