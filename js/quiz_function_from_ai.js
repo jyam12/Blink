@@ -278,6 +278,7 @@ class QuizManager {
         this.newQuizBtnElem
       );
     }
+    QuizManager.resizeAllQuestions();
   }
 
   deleteEntry(entry) {
