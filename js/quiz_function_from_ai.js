@@ -22,6 +22,7 @@ class QuizEntryComponent {
       console.log("defaultQuizEntry");
       this.quizManager.generateEntry().then((newEntry) => {
         this.update(newEntry);
+        QuizManager.resizeAllQuestions();
       });
     }
   }
@@ -278,7 +279,6 @@ class QuizManager {
         this.newQuizBtnElem
       );
     }
-    QuizManager.resizeAllQuestions();
   }
 
   deleteEntry(entry) {
