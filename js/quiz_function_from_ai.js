@@ -117,11 +117,15 @@ class QuizEntryComponent {
       this.regenerateAns()
     );
 
-    this.basicElems.saveBtnElem.addEventListener("click", () => this.save());
+    this.basicElems.saveBtnElem.addEventListener("click", () => {
+      this.save();
+      window.alert("Change saved!");
+    });
 
-    this.basicElems.deleteBtnElem.addEventListener("click", () =>
-      this.delelete()
-    );
+    this.basicElems.deleteBtnElem.addEventListener("click", () => {
+      this.delelete();
+      window.alert("Quiz Question deleted!");
+    });
   }
 
   constructOperationElem(basicElements) {

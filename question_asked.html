@@ -28,6 +28,7 @@
     </div> 
     <a href="question_asked.html" class="focus">Question Asked</a>
     <a href="quiz_function_from_ai.html" class="left">Quiz Function From AI</a>
+    <a href="upload.html" class="left">Upload</a>
   </div>
 
   <!-- The following has no css styling now -->
@@ -41,11 +42,13 @@
         <!-- I need the span tag to show the question count-->
         <!-- I need id written down -->
         <h3>Total Question Asked &#58 
-        <span class="video-history-count" id="video-history-count">0</span></h3>
+          <span class="video-history-count" id="video-history-count">0</span>
+          <span style="font-size: 0.8em;font-style:italic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Click blue bar to exapand the questions. Click answer to show full answer.)</span>
+        </h3>
       </div> <!-- video title -->
         <div class="video-history" id="video-history">
           <div class="unverified-container" id="unverified-container">
-            <button class="collapsible unverified-toggle" id="unverified-toggle">Number of unverified question :
+            <button class="collapsible unverified-toggle" id="unverified-toggle">Number of unapproved question :
               <span class="unverified-count" id="unverified-count">0</span>
             </button>
             <div class="unverified-history" id="unverified-history">
@@ -66,7 +69,7 @@
             </div>
           </div>
           <div class="verified-container" id="verified-container">
-            <button class="collapsible verified-toggle" id="verified-toggle">Number of verified question :
+            <button class="collapsible verified-toggle" id="verified-toggle">Number of approved question :
               <span class="verified-count" id="verified-count">0</span>
             </button>
             <div class="verified-history" id="verified-history">
@@ -93,15 +96,19 @@
     <button type="button" class="collapsible_for_Video">COMP3111-L2_Video </button>
     <div class="content">
     <div class="video-history-container">
-      <div><h3>Total Question Asked &#58 <span class="video-history-count">0</span> </h3></div> <!-- video title -->
+      <div>
+        <h3>Total Question Asked &#58 <span class="video-history-count">0</span>
+          <span style="font-size: 0.8em;font-style:italic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Click blue bar to exapand the questions. Click answer to show full answer.)</span> 
+        </h3>
+      </div> <!-- video title -->
 
       <div class="video-history">
         <div class="unverified-container">
-          <button class="collapsible unverified-toggle">Number of unverified question :<span class="unverified-count">0</span></button>
+          <button class="collapsible unverified-toggle">Number of unapproved question :<span class="unverified-count">0</span></button>
           <div class="unverified-history"></div>
         </div>
         <div class="verified-container">
-          <button class="collapsible verified-toggle">Number of verified question :<span class="verified-count">0</span></button>
+          <button class="collapsible verified-toggle">Number of approved question :<span class="verified-count">0</span></button>
           <div class="verified-history"></div>
         </div>
       </div>
@@ -112,15 +119,19 @@
   <button type="button" class="collapsible_for_Video">COMP3111-L3_Video </button>
   <div class="content">
     <div class="video-history-container">
-      <div><h3>Total Question Asked &#58 <span class="video-history-count">0</span></h3></div> <!-- video title -->
+      <div>
+        <h3>Total Question Asked &#58 <span class="video-history-count">0</span>
+          <span style="font-size: 0.8em;font-style:italic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Click blue bar to exapand the questions. Click answer to show full answer.)</span>
+        </h3>
+      </div> <!-- video title -->
 
       <div class="video-history">
         <div class="unverified-container">
-          <button class="collapsible unverified-toggle">Number of unverified question : <span class="unverified-count">0</span></button>
+          <button class="collapsible unverified-toggle">Number of unapproved question : <span class="unverified-count">0</span></button>
           <div class="unverified-history"></div>
         </div>
         <div class="verified-container">
-          <button class="collapsible verified-toggle">Number of verified question :<span class="verified-count">0</span></button>
+          <button class="collapsible verified-toggle">Number of approved question :<span class="verified-count">0</span></button>
           <div class="verified-history"></div>
         </div>
       </div>
