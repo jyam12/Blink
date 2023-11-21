@@ -173,17 +173,26 @@ class HistoryManager {
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "delete-history-question";
     deleteBtn.innerText = "Delete";
-    deleteBtn.addEventListener("click", (e) => this.delete(questionContainer));
+    deleteBtn.addEventListener("click", (e) => {
+      this.delete(questionContainer);
+      window.alert("Question deleted!");
+    });
 
     const saveBtn = document.createElement("button");
     saveBtn.className = "save-history-question";
     saveBtn.innerText = "Save";
-    saveBtn.addEventListener("click", (e) => this.update(questionContainer));
+    saveBtn.addEventListener("click", (e) => {
+      this.update(questionContainer);
+      window.alert("Answer saved!");
+    });
 
     const verifyBtn = document.createElement("button");
     verifyBtn.className = "verify-history-question";
-    verifyBtn.innerText = "Verify";
-    verifyBtn.addEventListener("click", (e) => this.verify(questionContainer));
+    verifyBtn.innerText = "Approve";
+    verifyBtn.addEventListener("click", (e) => {
+      this.verify(questionContainer);
+      window.alert("Answer approved!");
+    });
 
     questionContainer.appendChild(questionElem);
     questionContainer.appendChild(answerElem);
