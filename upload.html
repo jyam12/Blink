@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="/css/header_video_instuctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/video.css">
+<link rel="stylesheet" href="/css/quiz.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/upload.js" type="module"></script> 
+
+
+<body>
+    <!-- Header Bar -->
+  <div class="topnav_instrustor" >
+    <a href="index_student.html" class="split">Student Portal</a>
+    <a href="index.html" class="left">Home</a>
+    <div class="dropdown" >
+      <button class="dropbtn">Student View 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="CORE0000-L1_Video_instructor_side.html">COMP3111-L1</a>
+        <a href="">COMP3111-L2</a>
+        <a href="">COMP3111-L3</a>
+        <button class="dropbtnMoreVideo" >More Video
+          <i class="fa fa-caret-right"></i>
+        </button>
+      </div>
+    </div> 
+    <a href="question_asked.html" class="left">Question Asked</a>
+    <a href="quiz_function_from_ai.html" class="left">Quiz Function From AI</a>
+    <a href="upload.html" class="left">Upload</a>
+  </div>
+
+
+  <p>Please upload your video and relevant lecture note/slide here. The AI will scan through them as references to help you answer student's questions and generate quiz.</p>
+  <form>
+    <label for="lecture-code">Lecture Code:</label>
+    <input type="text" id="lecture-code" name="lecture-code" placeholder="L1">
+    <label for="video">Video:</label>
+    <input type="file" id="video" name="video">
+    <label for="lecture-note">Lecture Note/Slide:</label>
+    <input type="file" id="lecture-note" name="lecture-note">
+    <button type="button" id="upload">Upload</button>
+  </form>
+  <p id="success" style="display:none">Upload successfully! Now you can go to Student view to check the video!</p>
+
+
+</body>
+</html>
