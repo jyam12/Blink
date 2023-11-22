@@ -36,13 +36,13 @@
 
 /* collapsible for question */
 .collapsibleforquestion {
-  background-color: #084082;
+  background-color: #046BA6;
   color: white;
   cursor: pointer;
   padding: 18px;
   width: 100%;
   font-size: 15px;
-  margin: 0px 0px 0px;
+  margin: 0px 0px 5px;
 }
 .quiz-question{
   padding: 12px 20px 12px;
@@ -54,7 +54,7 @@
 }
 
 .collapsibleforquestion:hover {
-  background-color: #042852;
+  background-color: #00509E;
   color: white;
 }
 

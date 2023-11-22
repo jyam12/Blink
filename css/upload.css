@@ -1,0 +1,27 @@
+/* <form>
+<label for="lecture-code">Lecture Code:</label>
+<input type="text" id="lecture-code" name="lecture-code" placeholder="L1">
+<label for="video">Video:</label>
+<input type="file" id="video" name="video">
+<label for="lecture-note">Lecture Note/Slide:</label>
+<input type="file" id="lecture-note" name="lecture-note">
+<button type="button" id="upload">Upload</button>
+</form> */
+
+.form_container{
+    background-color: #f1f1f1;
+    margin : 50px 50px 0px;
+}
+
+.form_container p{
+    margin : 0px 0px 50px;
+}
+
+
+.row2 {
+    margin : 10px 0px 0px;
+  }
+  
+.row3{
+    margin : 10px 0px 0px;
+}

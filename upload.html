@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="/css/header_video_instuctor.css">
+<link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/video.css">
 <link rel="stylesheet" href="/css/quiz.css">
+<link rel="stylesheet" href="/css/upload.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/js/upload.js" type="module"></script> 
@@ -14,7 +15,7 @@
   <div class="topnav_instrustor" >
     <a href="index_student.html" class="split">Student Portal</a>
     <a href="index.html" class="left">Home</a>
-    <div class="dropdown" >
+    <div class="dropdown">
       <button class="dropbtn">Student View 
         <i class="fa fa-caret-down"></i>
       </button>
@@ -29,21 +30,26 @@
     </div> 
     <a href="question_asked.html" class="left">Question Asked</a>
     <a href="quiz_function_from_ai.html" class="left">Quiz Function From AI</a>
-    <a href="upload.html" class="left">Upload</a>
+    <a href="upload.html" class="focus">Upload</a>
   </div>
 
-
+<!-- Content -->
+<div  class="form_container">
   <p>Please upload your video and relevant lecture note/slide here. The AI will scan through them as references to help you answer student's questions and generate quiz.</p>
   <form>
     <label for="lecture-code">Lecture Code:</label>
     <input type="text" id="lecture-code" name="lecture-code" placeholder="L1">
+    <div class="row2">
     <label for="video">Video:</label>
-    <input type="file" id="video" name="video">
+    <input type="file" id="video" name="video" class="input-file">
     <label for="lecture-note">Lecture Note/Slide:</label>
     <input type="file" id="lecture-note" name="lecture-note">
+    </div>
+    <div class="row3">
     <button type="button" id="upload">Upload</button>
+    </div>
   </form>
 
-
+</div>
 </body>
 </html>

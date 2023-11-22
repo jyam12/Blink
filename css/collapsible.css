@@ -1,7 +1,7 @@
 /* collapsible */
 
   .collapsible {
-    background-color: #084082;
+    background-color: #125e8a;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -10,11 +10,11 @@
     text-align: left;
     outline: none;
     font-size: 15px;
-    margin: 0px 100px 0px;
+    margin: 0px 100px 5px;
   }
   
   .collapsible:hover {
-    background-color: #042852;
+    background-color: #0c3f5c;
     color: white;
   }
 
@@ -59,7 +59,7 @@
 
   /* history-question-button */
   .history-question{
-    background-color: #084082;
+    background-color: #046BA6;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -72,7 +72,7 @@
   }
 
   .history-question:hover {
-    background-color: #042852;
+    background-color: #00509E;
     color: white;
   }
 
