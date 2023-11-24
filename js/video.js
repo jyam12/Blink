@@ -23,7 +23,7 @@ askBtn.addEventListener("click", async (event) => {
 
   const answer = await gptManger.send(question);
 
-  answerElem.innerText = answer;
+  answerElem.innerText = "Unverified AI answer: " + answer;
   answerElem.style.height = "auto";
   answerElem.style.height =
     answerElem.scrollHeight > 300 ? "300px" : answerElem.scrollHeight + "px";
@@ -95,8 +95,8 @@ class QuizPopupManager {
     this.queElem.value = entry.question;
     this.ansElem.value = entry.answer;
 
-    this.queElem.style.height = "auto";
-    this.queElem.style.height = this.queElem.scrollHeight + "px";
+    this.queElem.style.height = "150px";
+    // this.queElem.style.height = this.queElem.scrollHeight + "px";
     this.ansElem.style.height = "auto";
     this.ansElem.style.height = this.ansElem.scrollHeight + "px";
 

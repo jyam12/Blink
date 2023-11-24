@@ -62,6 +62,11 @@ class QuizEntryComponent {
     timeStampElem.classList.add("timestamp");
     timeStampElem.value = this.entry.timeStamp;
 
+    const correctRateElem = document.createElement("span");
+    correctRateElem.classList.add("correct-rate");
+    correctRateElem.style.paddingLeft = "10px";
+    correctRateElem.innerText = "Correct Rate: 60%";
+
     const regenerateQnABtnElem = document.createElement("button");
     regenerateQnABtnElem.innerText = "Regenerate Q&A";
     regenerateQnABtnElem.classList.add("regenerate-qna");
@@ -83,6 +88,7 @@ class QuizEntryComponent {
       ansElem,
       labelElem,
       timeStampElem,
+      correctRateElem,
       deleteBtnElem,
       saveBtnElem,
       regenerateAnsBtnElem,
