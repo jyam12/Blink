@@ -6,8 +6,8 @@ Blink is a web-based educational platform designed for both instructors and stud
 
 This project is a frontend prototype for an e-learning platform. It consists of two main portals:
 
-*   **Instructor Portal:** Allows instructors to manage course materials, including uploading videos, generating quizzes with AI, and monitoring student engagement through a question-and-answer feature.
-*   **Student Portal:** Provides students with access to course videos and related quizzes.
+- **Instructor Portal:** Allows instructors to manage course materials, including uploading videos, generating quizzes with AI, and monitoring student engagement through a question-and-answer feature.
+- **Student Portal:** Provides students with access to course videos and related quizzes.
 
 The platform is built with vanilla JavaScript, HTML, and CSS, making it lightweight and easy to deploy.
 
@@ -15,22 +15,23 @@ The platform is built with vanilla JavaScript, HTML, and CSS, making it lightwei
 
 ### Instructor Features
 
-*   **Video Upload:** Upload new course videos.
-*   **AI-Powered Quiz Generation:** Automatically create quizzes for videos using AI.
-*   **Question Monitoring:** View and analyze questions asked by students.
-*   **Student View:** Preview the course content from a student's perspective.
+- **Video Upload:** Upload new course videos.
+- **AI-Powered Quiz Generation:** Automatically create quizzes for videos using AI.
+- **Question Monitoring:** View and analyze questions asked by students.
+- **Student View:** Preview the course content from a student's perspective.
+- **Feedback Report:** Generate reports on student engagement and quiz performance.
 
 ### Student Features
 
-*   **Video Lectures:** Watch course videos.
-*   **Interactive Quizzes:** Take quizzes associated with each video.
+- **Video Lectures:** Watch course videos.
+- **Interactive Quizzes:** Take quizzes associated with each video.
 
 ## Getting Started
 
 To run this project, you can simply open the HTML files in your web browser.
 
-*   For the instructor portal, open `index.html`.
-*   For the student portal, open `index_student.html`.
+- For the instructor portal, open `index.html`.
+- For the student portal, open `index_student.html`.
 
 No special installation is required.
 
@@ -56,20 +57,24 @@ The project is organized into the following directories:
 
 ### Instructor Portal
 
-![Instructor Portal](/src/Student_Perspective.png)
+![Instructor Portal](/src/instructor_portal_demo.png)
 
 ### Student Portal
 
-![Student Portal](/src/Course_Video.png)
+![Student Portal](/src/student_portal_demo.png)
 
-### AI Quiz Generation
+### Pop-up Quiz
 
-![AI Quiz Generation](/src/Quiz_AI.png)
+![Pop-up Quiz](/src/pop_up_demo.png)
+
+### Feedback Report
+
+![Feedback Report](/src/feedback_report.png)
 
 ### Question and Answer
 
-![Question and Answer](/src/Question_Asked.png)
+![Question and Answer](/src/Review_Approve_question.png)
 
 ### Video Upload
 
-![Video Upload](/src/upload.png)
+![Video Upload](/src/upload_page.png)
